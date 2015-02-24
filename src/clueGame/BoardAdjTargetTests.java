@@ -113,6 +113,7 @@ public class BoardAdjTargetTests {
 	{
 		// Test on top edge of board, just one walkway piece
 		LinkedList<BoardCell> testList = board.getAdjList(0, 5);
+		System.out.println(testList.size());
 		Assert.assertTrue(testList.contains(board.getCellAt(0, 6)));
 		Assert.assertEquals(1, testList.size());
 		

@@ -138,85 +138,86 @@ public class Board {
 	}
 
 	public void calcAdjacencies() {
-		for( int i = 0; i<numColumns; i++){
-			for (int j = 0; j<numRows; j++){
+		adjacencies = new HashMap<BoardCell, LinkedList<BoardCell>>();
+		for( int i = 0; i<numRows; i++){
+			for (int j = 0; j<numColumns; j++){
 				LinkedList<BoardCell> hold = new LinkedList<BoardCell>();
-				BoardCell cell = layout[i][j];
-				if( layoutRoom[i][j].isDoorway()){
-					int x = cell.getColumn();
-					int y = cell.getRow();
+				//BoardCell cell = layout[i][j];
+				if( layout[i][j].isDoorway()){
+					int x = layout[i][j].getRow();
+					int y = layout[i][j].getColumn();
 					if( x != 0){
 						BoardCell Left = layout[x-1][y];
-						if(layoutRoom[x-1][y].isDoorway()){
+						if(layout[x-1][y].isDoorway()){
 							hold.add(Left);
 						}
-						else if ( layoutWalkway[x-1][y].isWalkway()){
+						else if (layout[x-1][y].isWalkway()){
 							hold.add(Left);
 						}
 					}
 					if( y != 0){
 						BoardCell Up = layout[x][y-1];
-						if(layoutRoom[x][-y].isDoorway()){
+						if(layout[x][y-1].isDoorway()){
 							hold.add(Up);
 						}
-						else if ( layoutWalkway[x][y-1].isWalkway()){
+						else if ( layout[x][y-1].isWalkway()){
 							hold.add(Up);
 						}					}
 					if( x != numRows - 1){
 						BoardCell Right = layout[x+1][y];
-						if(layoutRoom[x+1][y].isDoorway()){
+						if(layout[x+1][y].isDoorway()){
 							hold.add(Right);
 						}
-						else if ( layoutWalkway[x+1][y].isWalkway()){
+						else if ( layout[x+1][y].isWalkway()){
 							hold.add(Right);
 						}					}
 					if( y != numColumns - 1){
 						BoardCell Down = layout[x][y+1];
-						if(layoutRoom[x][y+1].isDoorway()){
+						if(layout[x][y+1].isDoorway()){
 							hold.add(Down);
 						}
-						else if ( layoutWalkway[x][y+1].isWalkway()){
+						else if ( layout[x][y+1].isWalkway()){
 							hold.add(Down);
 						}					}
-					adjacencies.put(cell, hold);
+					adjacencies.put(layout[i][j], hold);
 				}
 				else if (layout[i][j].isWalkway() ){
-					int x = cell.getColumn();
-					int y = cell.getRow();
+					int x = layout[i][j].getRow();
+					int y = layout[i][j].getColumn();
 					if( x != 0){
 						BoardCell Left = layout[x-1][y];
-						if(layoutRoom[x-1][y].isDoorway()){
+						if(layout[x-1][y].isDoorway()){
 							hold.add(Left);
 						}
-						else if ( layoutWalkway[x-1][y].isWalkway()){
+						else if ( layout[x-1][y].isWalkway()){
 							hold.add(Left);
 						}
 					}
 					if( y != 0){
 						BoardCell Up = layout[x][y-1];
-						if(layoutRoom[x][-y].isDoorway()){
+						if(layout[x][-y].isDoorway()){
 							hold.add(Up);
 						}
-						else if ( layoutWalkway[x][y-1].isWalkway()){
+						else if ( layout[x][y-1].isWalkway()){
 							hold.add(Up);
 						}					}
 					if( x != numRows - 1){
 						BoardCell Right = layout[x+1][y];
-						if(layoutRoom[x+1][y].isDoorway()){
+						if(layout[x+1][y].isDoorway()){
 							hold.add(Right);
 						}
-						else if ( layoutWalkway[x+1][y].isWalkway()){
+						else if ( layout[x+1][y].isWalkway()){
 							hold.add(Right);
 						}					}
 					if( y != numColumns - 1){
 						BoardCell Down = layout[x][y+1];
-						if(layoutRoom[x][y+1].isDoorway()){
+						if(layout[x][y+1].isDoorway()){
 							hold.add(Down);
 						}
-						else if ( layoutWalkway[x][y+1].isWalkway()){
+						else if ( layout[x][y+1].isWalkway()){
 							hold.add(Down);
 						}					}
-					adjacencies.put(cell, hold);
+					adjacencies.put(layout[i][j], hold);
 				}
 					
 			}
@@ -226,8 +227,7 @@ public class Board {
 	}
 
 	public LinkedList<clueGame.BoardCell> getAdjList(int i, int j) {
-		// TODO Auto-generated method stub
-		return null;
+		return adjacencies.get(layout[i][j]);
 	}
 
 	public void calcTargets(int i, int j, int k) {

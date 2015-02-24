@@ -11,15 +11,14 @@ public class BoardCell {
 	}
 	
 	public boolean isWalkway(){
-		if (initial1 == "W"){
+		if (initial1.charAt(0) == 'W'){
 			return true;
 		}
 		else 
 			return false;
 	}
 	public boolean isRoom(){
-		if(initial1.length()== 1 && initial1 !="W"){
-			
+		if(initial1.length()== 1 && initial1.charAt(0) != 'W'){
 			return true;
 		}
 		else

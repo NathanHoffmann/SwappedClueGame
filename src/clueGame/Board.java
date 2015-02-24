@@ -139,19 +139,24 @@ public class Board {
 
 	public void calcAdjacencies() {
 		adjacencies = new HashMap<BoardCell, LinkedList<BoardCell>>();
+		
 		for( int i = 0; i<numRows; i++){
+			
 			for (int j = 0; j<numColumns; j++){
 				LinkedList<BoardCell> hold = new LinkedList<BoardCell>();
+				
 				//BoardCell cell = layout[i][j];
 				if( layout[i][j].isDoorway()){
 					int x = layout[i][j].getRow();
 					int y = layout[i][j].getColumn();
 					if( x != 0){
+						System.out.println(layout[i-1][j].getInitial1());
 						BoardCell Left = layout[x-1][y];
 						if(layout[x-1][y].isDoorway()){
 							hold.add(Left);
 						}
 						else if (layout[x-1][y].isWalkway()){
+							System.out.println("here");
 							hold.add(Left);
 						}
 					}
@@ -182,12 +187,14 @@ public class Board {
 					adjacencies.put(layout[i][j], hold);
 				}
 				else if (layout[i][j].isWalkway() ){
+					
 					int x = layout[i][j].getRow();
 					int y = layout[i][j].getColumn();
 					if( x != 0){
 						BoardCell Left = layout[x-1][y];
 						if(layout[x-1][y].isDoorway()){
 							hold.add(Left);
+							
 						}
 						else if ( layout[x-1][y].isWalkway()){
 							hold.add(Left);
@@ -195,7 +202,7 @@ public class Board {
 					}
 					if( y != 0){
 						BoardCell Up = layout[x][y-1];
-						if(layout[x][-y].isDoorway()){
+						if(layout[x][y-1].isDoorway()){
 							hold.add(Up);
 						}
 						else if ( layout[x][y-1].isWalkway()){
@@ -218,7 +225,7 @@ public class Board {
 							hold.add(Down);
 						}					}
 					adjacencies.put(layout[i][j], hold);
-				}
+					}
 					
 			}
 			

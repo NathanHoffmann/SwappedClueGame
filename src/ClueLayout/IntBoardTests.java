@@ -8,6 +8,7 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import clueGame.BoardCell;
 
 public class IntBoardTests {
 	private IntBoard board;

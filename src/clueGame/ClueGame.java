@@ -34,7 +34,7 @@ public class ClueGame {
 		}
 		this.cols = colu;
 		this.rows = row;
-		System.out.println("rows:"+rows+"cols: "+cols);
+		//System.out.println("rows:"+rows+"cols: "+cols);
 		gameBoard = new Board (rows, cols);
 		gameBoard.setBoard(board);
 		gameBoard.setLegend(legend);
@@ -44,8 +44,8 @@ public class ClueGame {
 		
 	}
 	public ClueGame() {
-		this.board = "ClueLayout_CR.csv";
-		this.legend = "ClueLegend.txt";
+		this.board = "ClueLayout.csv";
+		this.legend = "Legend.txt";
 	}
 	public ClueGame(String string, String string2) throws FileNotFoundException, BadConfigFormatException {
 		this.board= string;

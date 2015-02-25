@@ -208,7 +208,6 @@ public class Board {
 						}					}
 					adjacencies.put(layout[i][j], hold);
 					}
-					
 			}
 			
 		}
@@ -233,9 +232,9 @@ public class Board {
 		calcAllTargets(i, j, k);		
 	}
 	public void calcAllTargets(int i, int j, int k){
-		LinkedList<BoardCell> hold = adjacencies.get(layout[i][j]);
+		LinkedList<BoardCell> hold = new LinkedList<BoardCell>(adjacencies.get(layout[i][j]));
 		hold.removeAll(visited);
-		System.out.println(hold);
+		//System.out.println(hold);
 			int size = hold.size();
 			for(int p = 0; p< size; p++){
 				BoardCell cell = hold.get(p);
@@ -244,7 +243,6 @@ public class Board {
 				visited.add(layout[x][y]);
 				if (layout[x][y].isDoorway()){
 					targets.add(layout[x][y]);
-					
 				}
 				else if(k==1){
 						targets.add(layout[x][y]);
@@ -254,7 +252,9 @@ public class Board {
 					calcAllTargets(x, y, k-1);
 					visited.remove(layout[x][y]);	
 					}
-			}
+				
+				}
+			visited.remove(layout[i][j]);
 	}
 
 	public Set<clueGame.BoardCell> getTargets() {

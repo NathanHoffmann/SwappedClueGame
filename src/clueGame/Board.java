@@ -4,10 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
+import clueGame.RoomCell.DoorDirection;
 
 //import ClueLayout.BoardCell;
 
@@ -21,6 +24,8 @@ public class Board {
 	private String legend;
 	private String board;
 	private Map< BoardCell, LinkedList<BoardCell>> adjacencies;
+	private HashSet<BoardCell> visited;
+	private HashSet<BoardCell> targets;
 	
 	public Board(int rows, int cols){
 		this.numRows = rows;
@@ -144,46 +149,23 @@ public class Board {
 			
 			for (int j = 0; j<numColumns; j++){
 				LinkedList<BoardCell> hold = new LinkedList<BoardCell>();
-				
 				//BoardCell cell = layout[i][j];
 				if( layout[i][j].isDoorway()){
 					int x = layout[i][j].getRow();
 					int y = layout[i][j].getColumn();
-					if( x != 0){
-						System.out.println(layout[i-1][j].getInitial1());
-						BoardCell Left = layout[x-1][y];
-						if(layout[x-1][y].isDoorway()){
-							hold.add(Left);
-						}
-						else if (layout[x-1][y].isWalkway()){
-							System.out.println("here");
-							hold.add(Left);
-						}
+					RoomCell.DoorDirection dd = layoutRoom[i][j].getDoorDirection();
+					if( dd == DoorDirection.RIGHT){
+						hold.add(layout[x][y+1]);
 					}
-					if( y != 0){
-						BoardCell Up = layout[x][y-1];
-						if(layout[x][y-1].isDoorway()){
-							hold.add(Up);
-						}
-						else if ( layout[x][y-1].isWalkway()){
-							hold.add(Up);
-						}					}
-					if( x != numRows - 1){
-						BoardCell Right = layout[x+1][y];
-						if(layout[x+1][y].isDoorway()){
-							hold.add(Right);
-						}
-						else if ( layout[x+1][y].isWalkway()){
-							hold.add(Right);
-						}					}
-					if( y != numColumns - 1){
-						BoardCell Down = layout[x][y+1];
-						if(layout[x][y+1].isDoorway()){
-							hold.add(Down);
-						}
-						else if ( layout[x][y+1].isWalkway()){
-							hold.add(Down);
-						}					}
+					else if( dd == DoorDirection.LEFT){
+						hold.add(layout[x][y-1]);
+					}
+					else if( dd == DoorDirection.DOWN){
+						hold.add(layout[x+1][y]);
+					}
+					else if( dd == DoorDirection.UP){
+						hold.add(layout[x-1][y]);
+					}
 					adjacencies.put(layout[i][j], hold);
 				}
 				else if (layout[i][j].isWalkway() ){
@@ -192,9 +174,9 @@ public class Board {
 					int y = layout[i][j].getColumn();
 					if( x != 0){
 						BoardCell Left = layout[x-1][y];
-						if(layout[x-1][y].isDoorway()){
+						if(layout[x-1][y].isDoorway()&& layoutRoom[x-1][y].getDoorDirection() == RoomCell.DoorDirection.DOWN){
 							hold.add(Left);
-							
+							//System.out.println("here");
 						}
 						else if ( layout[x-1][y].isWalkway()){
 							hold.add(Left);
@@ -202,7 +184,7 @@ public class Board {
 					}
 					if( y != 0){
 						BoardCell Up = layout[x][y-1];
-						if(layout[x][y-1].isDoorway()){
+						if(layout[x][y-1].isDoorway()&& layoutRoom[x][y-1].getDoorDirection() == RoomCell.DoorDirection.RIGHT){
 							hold.add(Up);
 						}
 						else if ( layout[x][y-1].isWalkway()){
@@ -210,7 +192,7 @@ public class Board {
 						}					}
 					if( x != numRows - 1){
 						BoardCell Right = layout[x+1][y];
-						if(layout[x+1][y].isDoorway()){
+						if(layout[x+1][y].isDoorway()&&layoutRoom[x+1][y].getDoorDirection() == RoomCell.DoorDirection.UP){
 							hold.add(Right);
 						}
 						else if ( layout[x+1][y].isWalkway()){
@@ -218,7 +200,7 @@ public class Board {
 						}					}
 					if( y != numColumns - 1){
 						BoardCell Down = layout[x][y+1];
-						if(layout[x][y+1].isDoorway()){
+						if(layout[x][y+1].isDoorway()&&layoutRoom[x][y+1].getDoorDirection() == RoomCell.DoorDirection.LEFT){
 							hold.add(Down);
 						}
 						else if ( layout[x][y+1].isWalkway()){
@@ -234,17 +216,50 @@ public class Board {
 	}
 
 	public LinkedList<clueGame.BoardCell> getAdjList(int i, int j) {
-		return adjacencies.get(layout[i][j]);
-	}
-
-	public void calcTargets(int i, int j, int k) {
-		// TODO Auto-generated method stub
+		LinkedList<BoardCell> holdAdj = adjacencies.get(layout[i][j]);
+		if (holdAdj == null){
+			LinkedList<BoardCell>newAdj = new LinkedList<BoardCell>();
+			return newAdj;
+		}
+		else
+			return adjacencies.get(layout[i][j]);
 		
 	}
 
+	public void calcTargets(int i, int j, int k) {
+		targets = new HashSet<BoardCell>();
+		visited = new HashSet<BoardCell>();
+		visited.add(layout[i][j]);
+		calcAllTargets(i, j, k);		
+	}
+	public void calcAllTargets(int i, int j, int k){
+		LinkedList<BoardCell> hold = adjacencies.get(layout[i][j]);
+		hold.removeAll(visited);
+		System.out.println(hold);
+			int size = hold.size();
+			for(int p = 0; p< size; p++){
+				BoardCell cell = hold.get(p);
+				int x = cell.getRow();
+				int y = cell.getColumn();
+				visited.add(layout[x][y]);
+				if (layout[x][y].isDoorway()){
+					targets.add(layout[x][y]);
+					
+				}
+				else if(k==1){
+						targets.add(layout[x][y]);
+						visited.remove(layout[x][y]);
+				}
+				else{
+					calcAllTargets(x, y, k-1);
+					visited.remove(layout[x][y]);	
+					}
+			}
+	}
+
 	public Set<clueGame.BoardCell> getTargets() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return targets;
 	}
 	
 }

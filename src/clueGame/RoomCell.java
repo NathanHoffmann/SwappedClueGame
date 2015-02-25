@@ -42,10 +42,8 @@ public class RoomCell extends BoardCell {
 	private DoorDirection doorDirection;
 	private BoardCell[][] cell;
 	private Character roomInitial;
-
-	public enum DoorDirection {
-		LEFT, RIGHT, UP, DOWN, NONE;
-	}
+	
+	public enum DoorDirection {LEFT, RIGHT, UP, DOWN, NONE};
 
 	public DoorDirection getDoorDirection() {
 		return doorDirection;

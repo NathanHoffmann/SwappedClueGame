@@ -44,8 +44,8 @@ public class ClueGame {
 		
 	}
 	public ClueGame() {
-		this.board = "ClueLayout.csv";
-		this.legend = "Legend.txt";
+		this.board = "ClueLayout_CR.csv";
+		this.legend = "ClueLegend.txt";
 	}
 	public ClueGame(String string, String string2) throws FileNotFoundException, BadConfigFormatException {
 		this.board= string;

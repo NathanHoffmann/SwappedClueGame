@@ -1,0 +1,11 @@
+T, Theater Room
+D, Dining Room
+K, Kitchen
+O, Office
+S, Sitting Room
+B, Bathroom
+F, Foyer
+L, Library
+P, Swimming Pool
+W, Walkway
+X, Closet

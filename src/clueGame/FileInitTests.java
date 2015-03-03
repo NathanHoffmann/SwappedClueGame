@@ -69,7 +69,7 @@ public class FileInitTests {
 		assertTrue(room.isDoorway());
 		assertEquals(RoomCell.DoorDirection.UP, room.getDoorDirection());
 		// Test that room pieces that aren't doors know it
-		room = board.getRoomCellAt(13, 14);
+		room = board.getRoomCellAt(13, 13);
 		assertFalse(room.isDoorway());	
 		// Test that walkways are not doors
 		BoardCell cell = board.getCellAt(4, 6);

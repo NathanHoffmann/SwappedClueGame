@@ -31,7 +31,7 @@ public class GameSetUpTest {
 	public void loadCardtest() throws FileNotFoundException , BadConfigFormatException {
 		ClueGame game=new ClueGame();
 		game.loadConfigFiles();
-		assertEquals(25, game.getCards().size());
+		assertEquals(24, game.getCards().size());
 		int weapon=0, person=0, rooms=0;
 		for (int i=0; i < game.getCards().size();i++){
 			if(game.getCards().get(i).getType()==cardType.WEAPON)
@@ -43,7 +43,7 @@ public class GameSetUpTest {
 		}
 		Assert.assertEquals(8, weapon);
 		Assert.assertEquals(6, person);
-		Assert.assertEquals(9, rooms);
+		Assert.assertEquals(10, rooms);
 		// select one room, one weapon, and one person, and ensure the deck contains each of those
 		Set<String>cardName=new HashSet<String>();
 		for(int i=0 ; i<game.getCards().size();i++){
@@ -84,7 +84,8 @@ public class GameSetUpTest {
 		for(int i=0; i<game.getPlayers().size();i++){
 		dealtCards.addAll(game.getPlayers().get(i).getCards());
 		}
-		Assert.assertEquals(23, dealtCards.size());
+		Assert.assertEquals(25, dealtCards.size());
+		
 		
 		
 		

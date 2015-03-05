@@ -8,9 +8,12 @@ import java.io.FileNotFoundException;
 
 
 
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import clueGame.Card.cardType;
 
 import com.sun.prism.paint.Color;
 
@@ -32,6 +35,12 @@ public class GameSetUpTest {
 		ClueGame game=new ClueGame();
 		game.loadConfigFiles();
 		Assert.assertEquals(21, game.getCards().size());
+		for (int i=0; i < game.getCards().size();i++){
+			if(game.getCards().get(i).getType()==cardType.WEAPON){
+				
+			}
+		}
+		
 		
 	}
 

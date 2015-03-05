@@ -7,8 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import clueGame.Card.cardType;
+
 public class ClueGame {
-	ArrayList<Player> player=new ArrayList<Player>();
+	ArrayList<Player> players=new ArrayList<Player>();
 	ArrayList<Card> cards=new ArrayList<Card>();
 	private Map<Character, String> rooms;
 	private int rows;
@@ -57,11 +59,22 @@ public class ClueGame {
 		//}
 		
 	}
-	public ArrayList<Player> getPlayer() {
-		return player;
+
+	public void dealCards(){
+		int i=0;
+		while(i<cards.size()){
+			for(int j=0; j<players.size()&&i<cards.size();j++){
+				players.get(j).getCards().add(cards.get(i));
+				i++;
+			}
+		}
+	}
+	
+	public ArrayList<Player> getPlayers() {
+		return players;
 	}
 	public void setPlayer(ArrayList<Player> player) {
-		this.player = player;
+		this.players = player;
 	}
 	public ArrayList<Card> getCards() {
 		return cards;

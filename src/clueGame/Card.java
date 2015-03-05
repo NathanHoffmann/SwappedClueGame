@@ -18,8 +18,11 @@ public class Card {
 		this.type = type;
 	}
 	
-	public boolean equals(){
+	public boolean equals(Card other){
+		if(name==other.name&&type==other.type){
 		return true;
+		}
+		return false;
 	}
 	
 

@@ -172,6 +172,11 @@ public class ClueGame {
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
+		boolean checkWeapon = solution.weapon.equals(accusation.weapon);
+		boolean checkRoom = solution.room.equals(accusation.room);
+		boolean checkPerson = solution.person.equals(accusation.person);
+		
+		if(checkWeapon && checkRoom && checkPerson) return true;
 		return false;
 	}
 	

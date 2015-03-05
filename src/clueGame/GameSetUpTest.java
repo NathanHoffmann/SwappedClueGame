@@ -59,7 +59,7 @@ public class GameSetUpTest {
 	@Test
 	public void playerConfigTest() {
 		// Won't be 8
-		assertEquals(25,game.getCards().size());
+		assertEquals(24,game.getCards().size());
 		ArrayList<Player> players = game.getPlayers();		
 		
 		// Might need changing (as Color instead of string)
@@ -85,9 +85,13 @@ public class GameSetUpTest {
 		for(int i=0; i<game.getPlayers().size();i++){
 		dealtCards.addAll(game.getPlayers().get(i).getCards());
 		}
+
 		//System.out.println();
 		Assert.assertEquals(21, dealtCards.size());
 		Set<String> solutionCards=new HashSet<String>();
+
+		
+	
 		
 		Assert.assertEquals(24, dealtCards.size()+solutionCards.size());
 		//all players have roughly the same number of cards.

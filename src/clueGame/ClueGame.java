@@ -22,10 +22,14 @@ public class ClueGame {
 	private String board;
 	private String legend;
 	private String playerConfig;
+
 	public Solution getSolution() {
 		return solution;
 	}
-	private Solution solution=new Solution();
+
+	private Solution solution = new Solution();
+	
+
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException{
 		FileReader reader = new FileReader(board);
 		Scanner in = new Scanner(reader);
@@ -56,7 +60,6 @@ public class ClueGame {
 		} catch(Exception e) {
 			e.getMessage();
 		}
-		
 	}
 
 	public void loadPlayerConfig() throws Exception  {
@@ -118,6 +121,7 @@ public class ClueGame {
 		int i=0;
 
 
+
 		Random rand = new Random();
 		ArrayList<String> roomCard = new ArrayList<String>();
 		ArrayList<String> weaponCard = new ArrayList<String>();
@@ -132,6 +136,7 @@ public class ClueGame {
 			case ROOM : roomCard.add(c.getName());
 						break;
 			}
+
 			
 		}
 		solution.person = personCard.get(rand.nextInt(personCard.size()));
@@ -140,6 +145,7 @@ public class ClueGame {
 		while(i<cards.size()){
 			for(int j=0; j<players.size()&&i<cards.size();j++){
 				if(!cards.get(i).getName().equals(solution.weapon)&&!cards.get(i).getName().equals(solution.person)&&!cards.get(i).getName().equals(solution.room)){
+
 				players.get(j).getCards().add(cards.get(i));
 				}
 				else {

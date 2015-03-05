@@ -90,10 +90,12 @@ public class ClueGame {
 		}
 		
 		for(char key:rooms.keySet()) {
-			tempCard = new Card();
-			tempCard.setType(cardType.ROOM);
-			tempCard.setName(rooms.get(key));
+			if(key != 'X') {
+				tempCard = new Card();
+				tempCard.setType(cardType.ROOM);
+				tempCard.setName(rooms.get(key));
 			cards.add(tempCard);
+			}
 		}		
 		readPlayer.close();
 	}
@@ -110,18 +112,12 @@ public class ClueGame {
 	}
 	public void dealCards(){
 		int i=0;
-		System.out.println(cards);
-		System.out.println(players.get(0).getCards());
-		System.out.println(cards.size());
-		System.out.println(cards.get(0));
-		System.out.println(cards.get(1));
 		while(i<cards.size()){
 			for(int j=0; j<players.size()&&i<cards.size();j++){
 				players.get(j).getCards().add(cards.get(i));
 				i++;
 			}
 		}
-		System.out.println(players.get(0).getCards());
 	}
 	public ArrayList<Player> getPlayers() {
 		return players;

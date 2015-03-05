@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 import clueGame.Card.cardType;
@@ -21,6 +22,7 @@ public class ClueGame {
 	private String board;
 	private String legend;
 	private String playerConfig;
+	private Solution solution = new Solution();
 	
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException{
 		FileReader reader = new FileReader(board);
@@ -52,7 +54,6 @@ public class ClueGame {
 		} catch(Exception e) {
 			e.getMessage();
 		}
-		
 	}
 
 	public void loadPlayerConfig() throws Exception  {
@@ -112,8 +113,28 @@ public class ClueGame {
 	}
 	public void dealCards(){
 		int i=0;
+		
+		Random rand = new Random();
+		ArrayList<String> roomCard = new ArrayList<String>();
+		ArrayList<String> weaponCard = new ArrayList<String>();
+		ArrayList<String> personCard = new ArrayList<String>();
+		
+		for(Card c:cards) {
+			switch(c.getType()) {
+			case PERSON : personCard.add(c.getName());
+						break;
+			case WEAPON : weaponCard.add(c.getName());
+						break;
+			case ROOM : roomCard.add(c.getName());
+						break;
+			}
+			solution.person = personCard.get(rand.nextInt(personCard.size()));
+			solution.room = roomCard.get(rand.nextInt(roomCard.size()));
+			solution.weapon = weaponCard.get(rand.nextInt(weaponCard.size()));
+		}
+		
 		while(i<cards.size()){
-			for(int j=0; j<players.size()&&i<cards.size();j++){
+			for(int j=0; j<players.size() && i<cards.size();j++){
 				players.get(j).getCards().add(cards.get(i));
 				i++;
 			}

@@ -3,41 +3,32 @@ package clueGame;
 import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
-
-
-
-
-
-
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import clueGame.Card.cardType;
 
-import com.sun.prism.paint.Color;
 
 
 public class GameSetUpTest {
-
 	ClueGame game;
 	@Before
 	public void setUp() throws Exception {
 	    game=new ClueGame();
-		//game.loadConfigFiles();
+		game.loadConfigFiles();
 	}
-
 	
+	// Wasn't worked on, so just commented out for other tests
+	/*
 	@Test
 	public void loadCardtest() throws FileNotFoundException , BadConfigFormatException {
-		//test if The deck contains the correct total number of cards
-		//random number for the cards size	
-		Assert.assertEquals(23, game.getCards().size());	
-		//test if The deck contains the correct number of cards of each type
-		int weapon=0,person=0, rooms=0;
+		ClueGame game=new ClueGame();
+		game.loadConfigFiles();
+		assertEquals(21, game.getCards().size());
 		for (int i=0; i < game.getCards().size();i++){
 			if(game.getCards().get(i).getType()==cardType.WEAPON)
 				weapon++;
@@ -57,6 +48,29 @@ public class GameSetUpTest {
 		Assert.assertTrue(cardName.contains("Ms. Scarlet"));
 		Assert.assertTrue(cardName.contains("TNT"));
 		Assert.assertTrue(cardName.contains("Library"));
+	}
+	*/
+	
+	
+	@Test
+	public void playerConfigTest() {
+		// Won't be 8
+		assertEquals(25,game.getCards().size());
+		ArrayList<Player> players = game.getPlayers();		
+		
+		// Might need changing (as Color instead of string)
+		// Random answers atm just to get syntax right
+		assertEquals(java.awt.Color.red,players.get(0).getColor());
+		assertEquals(java.awt.Color.WHITE,players.get(2).getColor());
+		java.awt.Color purple = new java.awt.Color(255, 0, 255);
+		assertEquals(purple,players.get(5).getColor());
+		assertEquals("Ms. Scarlet",players.get(0).getName());
+		assertEquals("Col. Mustard",players.get(1).getName());
+		assertEquals("Prof. Plum",players.get(5).getName());
+		assertEquals(1,players.get(4).getCol());
+		assertEquals(1,players.get(5).getRow());
+		assertEquals(1,players.get(2).getCol());
+		assertEquals(1,players.get(2).getRow());	
 	}
 
 	@Test

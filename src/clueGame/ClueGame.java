@@ -108,11 +108,20 @@ public class ClueGame {
 		}
 		return color;
 	}
-	
+	public void dealCards(){
+		int i=0;
+		while(i<cards.size()){
+			for(int j=0; j<players.size()&&i<cards.size();j++){
+				players.get(j).getCards().add(cards.get(i));
+				i++;
+			}
+		}
+	}
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
-	public void setPlayers(ArrayList<Player> player) {
+
+	public void setPlayer(ArrayList<Player> player) {
 		this.players = player;
 	}
 	public ArrayList<Card> getCards() {

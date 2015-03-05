@@ -1,9 +1,9 @@
-P, Ms. Scarlet, red, x, y
-P, Col. Mustard, yellow, x, y
-P, Mrs. White, white, x, y
-P, Rev. Green, green, x, y
-P, Mrs. Peacock, blue, x, y
-P, Prof. Plum, purple, x, y
+P, Ms. Scarlet, red, 1, 1
+P, Col. Mustard, yellow, 1, 1
+P, Mrs. White, white, 1, 1
+P, Rev. Green, green, 1, 1
+P, Mrs. Peacock, blue, 1, 1
+P, Prof. Plum, magenta, 1, 1
 W, Pistol
 W, Poison
 W, Rope

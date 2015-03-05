@@ -1,14 +1,18 @@
 package clueGame;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import clueGame.Card.cardType;
+
 public class ClueGame {
-	ArrayList<Player> player=new ArrayList<Player>();
+	ArrayList<Player> players=new ArrayList<Player>();
 	ArrayList<Card> cards=new ArrayList<Card>();
 	private Map<Character, String> rooms;
 	private int rows;
@@ -42,26 +46,73 @@ public class ClueGame {
 		gameBoard.setBoard(board);
 		gameBoard.setLegend(legend);
 		gameBoard.loadBoardConfig();
-		loadPlayerConfig();
-		
-		
+		rooms = gameBoard.getRooms();
+		try {
+			loadPlayerConfig();
+		} catch(Exception e) {
+			e.getMessage();
+		}
 	}
 
-	public void loadPlayerConfig() throws FileNotFoundException  {
+	public void loadPlayerConfig() throws Exception  {
 		FileReader PReader = new FileReader(playerConfig);
 		Scanner readPlayer = new Scanner(PReader);
-		String line = readPlayer.nextLine();
-		String[] split = line.split(",");
-		//while(readPlayer.hasNextLine()) {
-			
-		//}
+		String line;
+		String[] split;
+		int count = 0;
+		Player tempPlayer;
+		Card tempCard = new Card();
+		while(readPlayer.hasNextLine()) {
+			line = readPlayer.nextLine();
+			split = line.split(", ");
+			switch(split[0]){
+			case "P" :
+				if(count == 0) tempPlayer = new HumanPlayer();
+				else tempPlayer = new ComputerPlayer();
+				tempPlayer.setName(split[1]);
+				tempPlayer.setColor(convertColor(split[2]));
+				tempPlayer.setCol(Integer.parseInt(split[3]));
+				tempPlayer.setRow(Integer.parseInt(split[4]));
+				players.add(tempPlayer);
+				tempCard.setName(split[1]);
+				tempCard.setType(cardType.PERSON);
+				cards.add(tempCard);
+				break;
+			case "W" :
+				tempCard.setName(split[1]);
+				tempCard.setType(cardType.WEAPON);
+				cards.add(tempCard);
+				break;				
+			default: throw new BadConfigFormatException();
+			}
+		}
+		
+		for(char key:rooms.keySet()) {
+			tempCard.setType(cardType.ROOM);
+			tempCard.setName(rooms.get(key));
+			cards.add(tempCard);
+		}
+		
+		readPlayer.close();
 		
 	}
-	public ArrayList<Player> getPlayer() {
-		return player;
+	
+	public Color convertColor(String strColor) {
+		Color color;
+		try {
+			Field field = Class.forName("java.awt.Color").getField(strColor.trim());
+			color = (Color) field.get(null);
+		} catch (Exception e) {
+			color = null;
+		}
+		return color;
 	}
-	public void setPlayer(ArrayList<Player> player) {
-		this.player = player;
+	
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+	public void setPlayers(ArrayList<Player> player) {
+		this.players = player;
 	}
 	public ArrayList<Card> getCards() {
 		return cards;
@@ -74,7 +125,7 @@ public class ClueGame {
 	}
 	public ClueGame() {
 		this.board = "ClueLayout.csv";
-		this.legend = "ClueLegend.txt";
+		this.legend = "Legend.txt";
 		this.playerConfig = "playerConfigFile.txt";
 	}
 	public ClueGame(String string, String string2) throws FileNotFoundException, BadConfigFormatException {

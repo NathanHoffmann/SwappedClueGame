@@ -19,6 +19,7 @@ public class GameActionTests {
 	
 	@Test
 	public void testAccusation() {
+		game.dealCards();
 		Solution solution = game.getSolution();
 		Solution accusation = new Solution();
 		accusation.person = solution.person;

@@ -46,6 +46,7 @@ public class ClueGame {
 		
 		
 	}
+
 	public void loadPlayerConfig() throws FileNotFoundException  {
 		FileReader PReader = new FileReader(playerConfig);
 		Scanner readPlayer = new Scanner(PReader);
@@ -55,7 +56,20 @@ public class ClueGame {
 			
 		//}
 		
-		
+	}
+	public ArrayList<Player> getPlayer() {
+		return player;
+	}
+	public void setPlayer(ArrayList<Player> player) {
+		this.player = player;
+	}
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
+	}
+	public void loadRoomConfig(){
 		
 	}
 	public ClueGame() {

@@ -3,18 +3,18 @@ package clueGame;
 public class Card {
 
 	private String name;
-	private String type;
-	public enum careType{PERSON, WEAPON, ROOM}
+	private cardType type;
+	public enum cardType{PERSON, WEAPON, ROOM}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getType() {
+	public cardType getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(cardType type) {
 		this.type = type;
 	}
 	

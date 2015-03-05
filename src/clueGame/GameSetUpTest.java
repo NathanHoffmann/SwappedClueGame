@@ -2,8 +2,18 @@ package clueGame;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
+
+
+
+
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.sun.prism.paint.Color;
+
 
 public class GameSetUpTest {
 
@@ -12,8 +22,10 @@ public class GameSetUpTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void loadPeopletest() throws FileNotFoundException , BadConfigFormatException {
+		ClueGame game=new ClueGame();
+		game.loadConfigFiles();
+		
 	}
 
 }

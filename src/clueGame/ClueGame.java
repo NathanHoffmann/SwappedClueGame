@@ -42,6 +42,18 @@ public class ClueGame {
 		gameBoard.setLegend(legend);
 		gameBoard.loadBoardConfig();
 	}
+	public ArrayList<Player> getPlayer() {
+		return player;
+	}
+	public void setPlayer(ArrayList<Player> player) {
+		this.player = player;
+	}
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
+	}
 	public void loadRoomConfig(){
 		
 	}

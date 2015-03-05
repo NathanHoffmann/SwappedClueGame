@@ -112,7 +112,7 @@ public class Board {
 					
 			}
 		}
-		
+		calcAdjacencies();
 	}
 	
 	@Override

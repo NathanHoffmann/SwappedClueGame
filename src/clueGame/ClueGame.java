@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 import clueGame.Card.cardType;
 
@@ -60,6 +61,7 @@ public class ClueGame {
 			e.getMessage();
 		}
 	}
+
 
 	public void loadPlayerConfig() throws Exception  {
 		FileReader PReader = new FileReader(playerConfig);

@@ -15,6 +15,14 @@ public class GameActionTests {
 	public static void setup() throws FileNotFoundException, BadConfigFormatException {
 		game = new ClueGame();
 		game.loadConfigFiles();
+		
+		Card scarletCard = new Card("Mrs Scarlet", Card.cardType.PERSON);
+		Card greenCard = new Card("Rev. Green",Card.cardType.PERSON);
+		Card pistolCard = new Card("Pistol", Card.cardType.WEAPON);
+		Card knifeCard = new Card("Knife", Card.cardType.WEAPON);
+		Card libraryCard = new Card("Library", Card.cardType.ROOM);
+		Card studyCard = new Card("Study", Card.cardType.ROOM);
+		
 	}
 	
 	
@@ -87,4 +95,12 @@ public class GameActionTests {
 		assertTrue(c>5);
 		assertTrue(d>5);		
 	}
+	
+	@Test
+	public void disproveTest() {
+		
+		
+		
+	}
+	
 }

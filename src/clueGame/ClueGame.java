@@ -104,7 +104,7 @@ public class ClueGame {
 		
 		
 		for(char key:rooms.keySet()) {
-			if(key != 'X') {
+			if(key != 'X' && key != 'W') {
 				tempCard = new Card();
 				tempCard.setType(cardType.ROOM);
 				tempCard.setName(rooms.get(key));

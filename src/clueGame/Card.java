@@ -5,6 +5,16 @@ public class Card {
 	private String name;
 	private cardType type;
 	public enum cardType{PERSON, WEAPON, ROOM}
+	
+	public Card() {
+		
+	}
+	public Card(String name, cardType type) {
+		this.name = name;
+		this.type = type;
+	}
+	
+	
 	public String getName() {
 		return name;
 	}

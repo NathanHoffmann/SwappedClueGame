@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,12 +24,13 @@ public class GameSetUpTest {
 	}
 	
 	// Wasn't worked on, so just commented out for other tests
-	/*
+	
 	@Test
 	public void loadCardtest() throws FileNotFoundException , BadConfigFormatException {
 		ClueGame game=new ClueGame();
 		game.loadConfigFiles();
-		assertEquals(21, game.getCards().size());
+		assertEquals(25, game.getCards().size());
+		int weapon=0, person=0, rooms=0;
 		for (int i=0; i < game.getCards().size();i++){
 			if(game.getCards().get(i).getType()==cardType.WEAPON)
 				weapon++;
@@ -49,7 +51,7 @@ public class GameSetUpTest {
 		Assert.assertTrue(cardName.contains("TNT"));
 		Assert.assertTrue(cardName.contains("Library"));
 	}
-	*/
+	
 	
 	
 	@Test

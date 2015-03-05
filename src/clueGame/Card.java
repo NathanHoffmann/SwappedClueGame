@@ -2,8 +2,6 @@ package clueGame;
 
 public class Card {
 
-
-
 	private String name;
 	private String type;
 	public enum careType{PERSON, WEAPON, ROOM}

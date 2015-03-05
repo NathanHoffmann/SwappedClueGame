@@ -16,6 +16,7 @@ public class ClueGame {
 	private Board gameBoard;
 	private String board;
 	private String legend;
+	private String playerConfig;
 	
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException{
 		FileReader reader = new FileReader(board);
@@ -34,24 +35,39 @@ public class ClueGame {
 				throw new BadConfigFormatException();
 			}
 		}
+		in.close();
 		this.cols = colu;
 		this.rows = row;
-		//System.out.println("rows:"+rows+"cols: "+cols);
 		gameBoard = new Board (rows, cols);
 		gameBoard.setBoard(board);
 		gameBoard.setLegend(legend);
 		gameBoard.loadBoardConfig();
+		loadPlayerConfig();
+		
+		
 	}
-	public void loadRoomConfig(){
+	public void loadPlayerConfig() throws FileNotFoundException  {
+		FileReader PReader = new FileReader(playerConfig);
+		Scanner readPlayer = new Scanner(PReader);
+		String line = readPlayer.nextLine();
+		String[] split = line.split(",");
+		//while(readPlayer.hasNextLine()) {
+			
+		//}
+		
+		
 		
 	}
 	public ClueGame() {
 		this.board = "ClueLayout.csv";
 		this.legend = "ClueLegend.txt";
+		this.playerConfig = "playerConfigFile.txt";
 	}
 	public ClueGame(String string, String string2) throws FileNotFoundException, BadConfigFormatException {
 		this.board= string;
 		this.legend = string2;
+		// Probably needs to be an input like board and legend
+		this.playerConfig = "playerConfigFile.txt";
 		loadConfigFiles();
 	}
 	public Board getBoard(){

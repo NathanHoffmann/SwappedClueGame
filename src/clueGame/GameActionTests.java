@@ -63,8 +63,6 @@ public class GameActionTests {
 		targets=game.getBoard().getTargets();
 		cplayer.pickLocation(targets);
 		assertNotEquals(game.getBoard().getCellAt(4, 2), game.getBoard().getCellAt(cplayer.getRow(), cplayer.getCol()));
-		//assertNotEquals(4, cplayer.getRow());
-		//assertNotEquals(2, cplayer.getCol());
 		//random selection
 		game.getBoard().calcTargets(15, 6, 2);
 		targets=game.getBoard().getTargets();
@@ -84,7 +82,6 @@ public class GameActionTests {
 				d++;
 			}
 		}
-		System.out.println(a+" "+b+" "+c+ " "+d);
 		assertTrue(a>5);
 		assertTrue(b>5);
 		assertTrue(c>5);

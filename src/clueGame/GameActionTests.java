@@ -3,6 +3,7 @@ package clueGame;
 import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
+import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -45,4 +46,43 @@ public class GameActionTests {
 		assertFalse(game.checkAccusation(accusation));
 	}
 
+	@Test
+	public void testSelectingTargets() {
+		// a set of targets that include a room
+		game.getBoard().calcTargets(6, 1, 3);
+		Set<BoardCell> targets=game.getBoard().getTargets();
+		ComputerPlayer cplayer= (ComputerPlayer) game.getPlayers().get(2);
+		cplayer.pickLocation(targets);
+		assertEquals(4, cplayer.getRow());
+		assertEquals(2, cplayer.getCol());
+		//a test that considers the last visited room
+		game.getBoard().calcTargets(4, 2, 2);
+		targets=game.getBoard().getTargets();
+		cplayer.pickLocation(targets);
+		assertNotEquals(4, cplayer.getRow());
+		assertNotEquals(2, cplayer.getCol());
+		//random selection
+		game.getBoard().calcTargets(15, 6, 2);
+		targets=game.getBoard().getTargets();
+		int a=0, b=0, c=0, d=0;
+		for(int i=0; i<100 ; i++){
+			cplayer.pickLocation(targets);
+			if(game.getBoard().getCellAt(cplayer.getRow(),cplayer.getCol())==game.getBoard().getCellAt(13, 6)){
+				a++;
+			}
+			else if(game.getBoard().getCellAt(cplayer.getRow(),cplayer.getCol())==game.getBoard().getCellAt(14, 7)){
+				b++;
+			}
+			else if(game.getBoard().getCellAt(cplayer.getRow(),cplayer.getCol())==game.getBoard().getCellAt(16, 5)){
+				c++;
+			}
+			else if(game.getBoard().getCellAt(cplayer.getRow(),cplayer.getCol())==game.getBoard().getCellAt(15, 4)){
+				d++;
+			}
+		}
+		assertTrue(a>10);
+		assertTrue(b>10);
+		assertTrue(c>10);
+		assertTrue(d>10);		
+	}
 }

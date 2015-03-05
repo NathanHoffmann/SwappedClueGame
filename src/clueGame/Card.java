@@ -1,5 +1,5 @@
 package clueGame;
 
-public class Card {
-
+public enum Card {
+	PERSON,WEAPON,ROOM;
 }

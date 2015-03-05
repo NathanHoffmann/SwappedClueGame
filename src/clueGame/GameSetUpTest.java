@@ -31,7 +31,7 @@ public class GameSetUpTest {
 	public void loadCardtest() throws FileNotFoundException , BadConfigFormatException {
 		ClueGame game=new ClueGame();
 		game.loadConfigFiles();
-		assertEquals(25, game.getCards().size());
+		assertEquals(24, game.getCards().size());
 		int weapon=0, person=0, rooms=0;
 		for (int i=0; i < game.getCards().size();i++){
 			if(game.getCards().get(i).getType()==cardType.WEAPON)
@@ -43,7 +43,7 @@ public class GameSetUpTest {
 		}
 		Assert.assertEquals(8, weapon);
 		Assert.assertEquals(6, person);
-		Assert.assertEquals(11, rooms);
+		Assert.assertEquals(10, rooms);
 		// select one room, one weapon, and one person, and ensure the deck contains each of those
 		Set<String>cardName=new HashSet<String>();
 		for(int i=0 ; i<game.getCards().size();i++){
@@ -90,14 +90,16 @@ public class GameSetUpTest {
 		Assert.assertEquals(21, dealtCards.size());
 		Set<String> solutionCards=new HashSet<String>();
 
-		
+		solutionCards.add(game.getSolution().person);
+		solutionCards.add(game.getSolution().weapon);
+		solutionCards.add(game.getSolution().room);
 	
 		
 		Assert.assertEquals(24, dealtCards.size()+solutionCards.size());
 		//all players have roughly the same number of cards.
 		for(int i=0; i<game.getPlayers().size();i++){
 			for(int j=i; j<game.getPlayers().size();j++){
-				Assert.assertTrue(Math.abs(game.getPlayers().get(i).getCards().size()-game.getPlayers().get(j).getCards().size())<2);				
+				assertTrue(Math.abs(game.getPlayers().get(i).getCards().size()-game.getPlayers().get(j).getCards().size())<2);				
 			}
 		}		
 		

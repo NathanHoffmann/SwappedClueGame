@@ -1,0 +1,74 @@
+Code location is on GitHub under the username of NathanHoffmann and is called SwappedClueGame
+
+* Coded the checkAccusation method
+* Added tests for checking the accusation
+*   fixed conflict
+|\  
+| * Forgot to save a change
+* | changed testdealcard()
+* |   fixed conflicts
+|\ \  
+| |/  
+| * Set up inputting to the solution class
+* | changed dealCards()
+|/  
+*  changed loadCardTests()
+*   Merge branch 'master' of https://github.com/NathanHoffmann/SwappedClueGame
+|\  
+| *   Merge branch 'master' of https://github.com/NathanHoffmann/SwappedClueGame
+| |\  
+| * | Fixed card inputs
+* | | test file change
+| |/  
+|/|   
+* |   Merge branch 'master' of https://github.com/NathanHoffmann/SwappedClueGame
+|\ \  
+| |/  
+| *   Fixed one more conflict
+| |\  
+| * \   Fixed conflicts in test
+| |\ \  
+| * | | Loaded player config, set up cards, tested players
+| * | |   Merge branch 'master' of https://github.com/NathanHoffmann/SwappedClueGame
+| |\ \ \  
+| * | | | Failing Testsfor loading people
+* | | | |  changed testDealCards
+| |_|_|/  
+|/| | |   
+* | | | added dealCards()
+| |_|/  
+|/| |   
+* | | changed loadCardTest()
+* | | implemented loadCardTests
+| |/  
+|/|   
+* | fixed Card class
+* |   Merge branch 'master' of https://github.com/NathanHoffmann/SwappedClueGame
+|\ \  
+| |/  
+| *   Merged and fixed changes
+| |\  
+| * | Working on config files, and saving current ones being used
+* | | starting loadCardTest
+| |/  
+|/|   
+* | add row and col for player class
+* |  created GameSetUpTest Class
+|/  		
+*   fixed conflicts
+|\  
+| * Added humanPlayer and enum Card
+* | set up arrayLists
+|/  
+* initial class stubs for card and player classes
+* Initial commit after the swap	<---- NOTE This is were the swap is.
+* Got every test working
+* adjacency tests working, targets not
+* Changed code to check for character instead of string in bool statements
+* Got tests to run, failed due to null pointer exception
+* Edited adjacencies
+* clueGame added
+* Added new ClueBoard package
+* JUnit tests written and failed
+* Added gitignore
+* Initial commit

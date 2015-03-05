@@ -76,7 +76,9 @@ public class ClueGame {
 			switch(split[0]){
 			case "P" :
 				if(count == 0) tempPlayer = new HumanPlayer();
-				else tempPlayer = new ComputerPlayer();
+				else{ System.out.println("in else"); 
+					tempPlayer = new ComputerPlayer();
+				}
 				tempPlayer.setName(split[1]);
 				tempPlayer.setColor(convertColor(split[2]));
 				tempPlayer.setCol(Integer.parseInt(split[3]));
@@ -93,7 +95,11 @@ public class ClueGame {
 				break;				
 			default: throw new BadConfigFormatException();
 			}
+			count++;
 		}
+		System.out.println(players.get(0));
+		System.out.println(players.get(1));
+		
 		
 		for(char key:rooms.keySet()) {
 			if(key != 'X') {

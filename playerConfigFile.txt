@@ -1,0 +1,14 @@
+P, Ms. Scarlet, red, x, y
+P, Col. Mustard, yellow, x, y
+P, Mrs. White, white, x, y
+P, Rev. Green, green, x, y
+P, Mrs. Peacock, blue, x, y
+P, Prof. Plum, purple, x, y
+W, Pistol
+W, Poison
+W, Rope
+W, Axe
+W, Knife
+W, Sword
+W, TNT
+W, Anvil

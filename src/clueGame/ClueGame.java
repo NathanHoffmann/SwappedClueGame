@@ -21,7 +21,7 @@ public class ClueGame {
 	private String board;
 	private String legend;
 	private String playerConfig;
-	
+	private solution solution=new solution();
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException{
 		FileReader reader = new FileReader(board);
 		Scanner in = new Scanner(reader);
@@ -110,18 +110,16 @@ public class ClueGame {
 	}
 	public void dealCards(){
 		int i=0;
-		System.out.println(cards);
-		System.out.println(players.get(0).getCards());
-		System.out.println(cards.size());
-		System.out.println(cards.get(0));
-		System.out.println(cards.get(1));
+		
 		while(i<cards.size()){
 			for(int j=0; j<players.size()&&i<cards.size();j++){
+				if(!cards.get(i).getName().equals(solution.weapon)&&!cards.get(i).getName().equals(solution.person)&&!cards.get(i).getName().equals(solution.room)){
 				players.get(j).getCards().add(cards.get(i));
+				}
 				i++;
 			}
 		}
-		System.out.println(players.get(0).getCards());
+	
 	}
 	public ArrayList<Player> getPlayers() {
 		return players;

@@ -1,8 +1,10 @@
 package clueGame;
 
+
+
 public class solution {
-	public String person;
-	public String weapon;
-	public String room;
+	public String person="Rev. Green";
+	public String weapon="Knife";
+	public String room="Library";
 
 }

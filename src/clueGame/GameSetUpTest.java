@@ -25,6 +25,13 @@ public class GameSetUpTest {
 	public void loadPeopletest() throws FileNotFoundException , BadConfigFormatException {
 		ClueGame game=new ClueGame();
 		game.loadConfigFiles();
+	
+	}
+	@Test
+	public void loadCardtest() throws FileNotFoundException , BadConfigFormatException {
+		ClueGame game=new ClueGame();
+		game.loadConfigFiles();
+		Assert.assertEquals(21, game.getCards().size());
 		
 	}
 

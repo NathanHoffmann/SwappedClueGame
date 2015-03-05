@@ -92,6 +92,7 @@ public class ClueGame {
 			tempCard.setName(rooms.get(key));
 			cards.add(tempCard);
 		}
+		System.out.println(cards.get(0));
 		
 		readPlayer.close();
 		

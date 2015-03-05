@@ -25,6 +25,13 @@ public class Card {
 		return false;
 	}
 	
+	// Testing
+	@Override
+	public String toString() {
+		return "Card [name=" + name + ", type=" + type + "]";
+	}
+	
+	
 
 }
 

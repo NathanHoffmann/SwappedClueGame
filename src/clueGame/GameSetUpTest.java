@@ -20,6 +20,8 @@ public class GameSetUpTest {
 	public void setUp() throws Exception {
 	    game=new ClueGame();
 		game.loadConfigFiles();
+		// just for testing \/
+		game.dealCards();
 	}
 	
 	// Wasn't worked on, so just commented out for other tests

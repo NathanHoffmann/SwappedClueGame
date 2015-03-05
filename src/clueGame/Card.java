@@ -1,4 +1,5 @@
 package clueGame;
+
 public class Card {
 
 
@@ -24,6 +25,6 @@ public class Card {
 	}
 	
 
-
-
 }
+
+

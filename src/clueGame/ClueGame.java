@@ -2,13 +2,15 @@ package clueGame;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class ClueGame {
+	ArrayList<Player> player=new ArrayList<Player>();
+	ArrayList<Card> cards=new ArrayList<Card>();
 	private Map<Character, String> rooms;
-
 	private int rows;
 	private int cols;
 	private Board gameBoard;

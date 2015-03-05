@@ -75,4 +75,16 @@ public class GameSetUpTest {
 		assertEquals(1,players.get(2).getRow());	
 	}
 
+	@Test
+	public void testDealCards(){
+		
+		Set<Card> dealtCards= new HashSet<Card>();
+		for(int i=0; i<game.getPlayers().size();i++){
+		dealtCards.addAll(game.getPlayers().get(i).getCards());
+		}
+		Assert.assertEquals(23, dealtCards.size());
+		
+		
+		
+	}
 }

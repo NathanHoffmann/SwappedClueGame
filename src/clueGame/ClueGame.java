@@ -22,13 +22,12 @@ public class ClueGame {
 	private String board;
 	private String legend;
 	private String playerConfig;
+	private Solution solution = new Solution();
 
 	public Solution getSolution() {
 		return solution;
 	}
 
-	private Solution solution = new Solution();
-	
 
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException{
 		FileReader reader = new FileReader(board);
@@ -171,6 +170,11 @@ public class ClueGame {
 	public void loadRoomConfig(){
 		
 	}
+	
+	public boolean checkAccusation(Solution accusation) {
+		return false;
+	}
+	
 	public ClueGame() {
 		this.board = "ClueLayout.csv";
 		this.legend = "Legend.txt";

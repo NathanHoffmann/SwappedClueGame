@@ -59,4 +59,16 @@ public class GameSetUpTest {
 		Assert.assertTrue(cardName.contains("Library"));
 	}
 
+	@Test
+	public void testDealCards(){
+		
+		Set<Card> dealtCards= new HashSet<Card>();
+		for(int i=0; i<game.getPlayers().size();i++){
+		dealtCards.addAll(game.getPlayers().get(i).getCards());
+		}
+		Assert.assertEquals(23, dealtCards.size());
+		
+		
+		
+	}
 }

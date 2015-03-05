@@ -95,6 +95,7 @@ public class ClueGame {
 				break;				
 			default: throw new BadConfigFormatException();
 			}
+			count++;
 		}
 		
 		for(char key:rooms.keySet()) {

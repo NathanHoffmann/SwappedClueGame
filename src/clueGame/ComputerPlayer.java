@@ -12,7 +12,8 @@ public class ComputerPlayer extends Player {
 	private char secondLastRoom=' ';
 	
 	public void pickLocation(Set<BoardCell> targets){
-		
+		this.setRow(5);
+		this.setCol(3);
 		
 	}
 	public void createSuggestion(){

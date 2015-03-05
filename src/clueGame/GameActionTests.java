@@ -50,9 +50,12 @@ public class GameActionTests {
 	public void testSelectingTargets() {
 		// a set of targets that include a room
 		game.getBoard().calcTargets(6, 1, 3);
+		
 		Set<BoardCell> targets=game.getBoard().getTargets();
-		ComputerPlayer cplayer= (ComputerPlayer) game.getPlayers().get(2);
+		ComputerPlayer cplayer= (ComputerPlayer) game.getPlayers().get(3);
+		
 		cplayer.pickLocation(targets);
+		System.out.println(cplayer.getRow()+" " +cplayer.getCol());
 		assertEquals(4, cplayer.getRow());
 		assertEquals(2, cplayer.getCol());
 		//a test that considers the last visited room

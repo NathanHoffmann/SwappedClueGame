@@ -29,7 +29,7 @@ public class GameSetUpTest {
 	
 	@Test
 	public void loadCardtest() throws FileNotFoundException , BadConfigFormatException {
-		ClueGame game=new ClueGame();
+		game=new ClueGame();
 		game.loadConfigFiles();
 		assertEquals(24, game.getCards().size());
 		int weapon=0, person=0, rooms=0;

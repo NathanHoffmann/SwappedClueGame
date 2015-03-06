@@ -3,6 +3,7 @@ package clueGame;
 import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.junit.BeforeClass;
@@ -25,7 +26,12 @@ public class GameActionTests {
 		
 	}
 	
-	
+	@Test
+	public void disproveTest() {
+		
+		
+		
+	}
 	@Test
 	public void testAccusation() {
 		game.dealCards();
@@ -34,7 +40,7 @@ public class GameActionTests {
 		accusation.person = solution.person;
 		accusation.room = solution.room;
 		accusation.weapon = solution.weapon;
-		
+	
 		// Check when they are all right
 		assertTrue(game.checkAccusation(accusation));
 		// Check when just the person is wrong
@@ -97,10 +103,21 @@ public class GameActionTests {
 	}
 	
 	@Test
-	public void disproveTest() {
+	public void testMakingSuggestion() {
+		ArrayList<String>unseen=new ArrayList<String>();
 		
-		
-		
+		unseen.add("Rev. Green");
+		unseen.add("Pistol");
+		unseen.add("Library");	
+		game.getPlayers().get(1).setUnSeen(unseen);	
+		((ComputerPlayer) game.getPlayers().get(1)).makeSuggestion();
+		for(int j=1; j<game.getPlayers().size();j++){
+		for(int i=0; i<unseen.size();i++){
+			System.out.println(i);
+		assertTrue(unseen.contains(((ComputerPlayer) game.getPlayers().get(j)).getSuggestion().get(i)));
+		}		
+		}
 	}
+	
 	
 }

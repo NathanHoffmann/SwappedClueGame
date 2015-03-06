@@ -24,7 +24,6 @@ public class ClueGame {
 	private String legend;
 	private String playerConfig;
 	private Solution solution = new Solution();
-
 	public Solution getSolution() {
 		return solution;
 	}
@@ -110,10 +109,19 @@ public class ClueGame {
 				tempCard.setName(rooms.get(key));
 			cards.add(tempCard);
 			}
-		}		
+		}	
+		for(int i=0; i<players.size();i++){
+			if(players.get(i).getClass()==ComputerPlayer.class){
+				players.get(i);
+			}
+		}
 		readPlayer.close();
 	}
 	
+	public void  makeSuggestion(Player currentPlayer){
+		
+		
+	}
 	public Color convertColor(String strColor) {
 		Color color;
 		try {

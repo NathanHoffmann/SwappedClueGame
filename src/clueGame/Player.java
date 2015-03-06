@@ -11,7 +11,17 @@ public class Player {
 	private Color color;
 	private int row;
 	private int col;
-	
+	private ArrayList<String> unSeen;
+	public ArrayList<String> getUnSeen(){
+		return unSeen;
+	}
+	public void updateUnSeen(String seen){
+		unSeen.remove(seen);
+		
+	}
+	public void setUnSeen(ArrayList<String> unseen){
+		unSeen=new ArrayList<String>(unseen);
+	}
 	public int getRow() {
 		return row;
 	}

@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 
@@ -11,6 +12,7 @@ public class Player {
 	private Color color;
 	private int row;
 	private int col;
+
 	private ArrayList<String> unSeen;
 	public ArrayList<String> getUnSeen(){
 		return unSeen;
@@ -22,6 +24,9 @@ public class Player {
 	public void setUnSeen(ArrayList<String> unseen){
 		unSeen=new ArrayList<String>(unseen);
 	}
+
+	ArrayList<Card> cards=new ArrayList<Card>();
+	
 	public int getRow() {
 		return row;
 	}
@@ -61,6 +66,22 @@ public class Player {
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
+	
+	public Card disproveSuggestion(String person, String weapon, String room) {
+		ArrayList<Card> possibleCards = new ArrayList<Card>();
+		Random rand = new Random();
+		for(Card i:cards) {
+			if(i.getName() == person || i.getName() == weapon || i.getName() == room) {
+				possibleCards.add(i);
+			}
+		}
+		if(possibleCards.size() == 0)
+			return null;
+		else {
+		int index = rand.nextInt(possibleCards.size());
+		return possibleCards.get(index);
+		}
+	}
 
-	ArrayList<Card> cards=new ArrayList<Card>();
+
 }

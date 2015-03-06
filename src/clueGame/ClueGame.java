@@ -132,8 +132,6 @@ public class ClueGame {
 	public void dealCards(){
 		int i=0;
 
-
-
 		Random rand = new Random();
 		ArrayList<String> roomCard = new ArrayList<String>();
 		ArrayList<String> weaponCard = new ArrayList<String>();

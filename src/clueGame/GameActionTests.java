@@ -20,7 +20,7 @@ public class GameActionTests {
 		game = new ClueGame();
 		game.loadConfigFiles();
 		
-		scarletCard = new Card("Mrs Scarlet", Card.cardType.PERSON);
+		scarletCard = new Card("Ms. Scarlet", Card.cardType.PERSON);
 		greenCard = new Card("Rev. Green",Card.cardType.PERSON);
 		pistolCard = new Card("Pistol", Card.cardType.WEAPON);
 		knifeCard = new Card("Knife", Card.cardType.WEAPON);
@@ -110,7 +110,7 @@ public class GameActionTests {
 		player.cards.add(libraryCard);
 		player.cards.add(studyCard);
 		// Test return of person
-		assertTrue(scarletCard.equals(player.disproveSuggestion("Mrs. Scarlet", "Poison", "Lounge")));
+		assertTrue(scarletCard.equals(player.disproveSuggestion("Ms. Scarlet", "Poison", "Lounge")));
 		// Test return of weapon
 		assertTrue(knifeCard.equals(player.disproveSuggestion("Prof. Plum", "Knife", "Lounge")));
 		// Test return of room
@@ -121,9 +121,9 @@ public class GameActionTests {
 		int testRoom = 0;
 		
 		for(int i = 0; i < 100; i++) {
-			if(player.disproveSuggestion("Mrs. Scarlet", "Knife", "Library") == scarletCard) testPerson++;
-			if(player.disproveSuggestion("Mrs. Scarlet", "Knife", "Library") == knifeCard) testWeapon++;
-			if(player.disproveSuggestion("Mrs. Scarlet", "Knife", "Library") == libraryCard) testRoom++;
+			if(player.disproveSuggestion("Ms. Scarlet", "Knife", "Library") == scarletCard) testPerson++;
+			if(player.disproveSuggestion("Ms. Scarlet", "Knife", "Library") == knifeCard) testWeapon++;
+			if(player.disproveSuggestion("Ms. Scarlet", "Knife", "Library") == libraryCard) testRoom++;
 		}
 		assertTrue(testPerson > 10);
 		assertTrue(testWeapon > 10);

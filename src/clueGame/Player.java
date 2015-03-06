@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 
@@ -55,8 +56,19 @@ public class Player {
 	}
 	
 	public Card disproveSuggestion(String person, String weapon, String room) {
-		// Needs changing
-		return cards.get(0);
+		ArrayList<Card> possibleCards = new ArrayList<Card>();
+		Random rand = new Random();
+		for(Card i:cards) {
+			if(i.getName() == person || i.getName() == weapon || i.getName() == room) {
+				possibleCards.add(i);
+			}
+		}
+		if(possibleCards.size() == 0)
+			return null;
+		else {
+		int index = rand.nextInt(possibleCards.size());
+		return possibleCards.get(index);
+		}
 	}
 
 

@@ -28,12 +28,11 @@ public class GameActionTests {
 		studyCard = new Card("Study", Card.cardType.ROOM);
 		
 	}
-	
-
-	
+		
 	@Test
 	public void testAccusation() {
-		game.dealCards();
+		// Shouldn't need? Needs checking
+		//game.dealCards();
 		Solution solution = game.getSolution();
 		Solution accusation = new Solution();
 		accusation.person = solution.person;
@@ -104,45 +103,32 @@ public class GameActionTests {
 	@Test
 
 	public void testMakingSuggestion() {
-		ArrayList<String>unseen=new ArrayList<String>();
-
-		/*
-		game.suggestion(game.getPlayers().get(2));
-		unseen.add("Rev. Green");
-		unseen.add("Pistol");
-		unseen.add("Library");	
+		ArrayList<Card>unseen=new ArrayList<Card>();
+		
+		Card tempPerson = new Card("Rev. Green", Card.cardType.PERSON);
+		Card tempWeapon = new Card("Pistol", Card.cardType.WEAPON);
+		Card tempRoom = new Card("Library", Card.cardType.ROOM);
+		
+		unseen.add(tempPerson);
+		unseen.add(tempRoom);
+		unseen.add(tempWeapon);	
+		game.getPlayers().get(2).setUnSeen(unseen);
+		((ComputerPlayer)game.players.get(2)).makeSuggestion("Library");
+		//game.suggestion(game.getPlayers().get(2));
+		assertTrue(game.players.get(2).getSugPerson()=="Rev. Green");		
+		assertTrue(game.players.get(2).getSugWeapon()=="Pistol");
+		assertTrue(game.players.get(2).getSugRoom()=="Library");
+		Card testSeen = new Card("Knife",Card.cardType.WEAPON);
+		ArrayList<Card> seen=new ArrayList<Card>();
+		seen.add(testSeen);	
+		unseen.add(testSeen);
 		game.getPlayers().get(1).setUnSeen(unseen);	
-		((ComputerPlayer) game.getPlayers().get(1)).makeSuggestion();
-		for(int j=1; j<game.getPlayers().size();j++){
-		for(int i=0; i<unseen.size();i++){
-			System.out.println(i);
-		assertTrue(unseen.contains(((ComputerPlayer) game.getPlayers().get(j)).getSuggestion().get(i)));
-		}		
-		}
-		*/
-		unseen.add("Rev. Green");
-		unseen.add("Pistol");
-		unseen.add("Library");	
-		game.getPlayers().get(1).setUnSeen(unseen);	
-		game.suggestion(game.getPlayers().get(2));
-		assertTrue(game.getSugPerson()=="Rev. Green");
-		assertTrue(game.getSugWeapon()=="Pistol");
-		assertTrue(game.getSugRoom()=="Library");
-		ArrayList<String> seen=new ArrayList<String>();
-		unseen.add("Knife");		
-		game.getPlayers().get(1).setUnSeen(unseen);	
-		game.setDisproved(seen.get(0));
-		assertTrue(game.getPlayers().get(1).getUnSeen().contains("Knife"));
+		game.setDisproved(seen.get(0).getName());
+		game.setDisprovedCard(testSeen);
+		
+		assertTrue(game.getPlayers().get(1).getUnSeen().contains(testSeen));
 		game.removeSeen();
-		
-		assertFalse(game.getPlayers().get(1).getUnSeen().contains("Knife"));
-		
-		
-		
-		
-		
-		
-		
+		assertFalse(game.getPlayers().get(1).getUnSeen().contains(testSeen));		
 	}
 	
 	
@@ -197,14 +183,7 @@ public class GameActionTests {
 		Card hallCard = new Card("Hall",cardType.ROOM);
 		Card diningCard = new Card("Dining Room",cardType.ROOM);
 		Card ballCard = new Card("Ballroom",cardType.ROOM);
-		// Set up players to be in specific order
-		//HumanPlayer p1 = new HumanPlayer();
-		//ComputerPlayer p2 = new ComputerPlayer();
-		//ComputerPlayer p3 = new ComputerPlayer();
-		//ComputerPlayer p4 = new ComputerPlayer();
-		//ComputerPlayer p5 = new ComputerPlayer();
-		//ComputerPlayer p6 = new ComputerPlayer();
-		//ArrayList<Player> players = new ArrayList<Player>();
+
 		game.players.get(0).cards.clear();
 		game.players.get(1).cards.clear();
 		game.players.get(2).cards.clear();
@@ -248,9 +227,5 @@ public class GameActionTests {
 		// Test where the last person can disprove
 		game.handleSuggestion("Other Person", "TNT", "Ballroom", game.players.get(3));
 		assertEquals("Ballroom",game.getDisproved());
-		
-		
-		
-
 	}	
 }

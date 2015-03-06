@@ -30,12 +30,17 @@ public class ClueGame {
 	private String sugRoom;
 	private String sugPerson;
 	private String sugWeapon;
+	
 	public String getDisproved() {
 		return disproved;
 	}
 
 	public void removeSeen(){
-		
+		for(Player i:players) {
+			ArrayList<Card> temp = new ArrayList<Card>(i.getUnSeen());
+			temp.remove(disprovedCard);
+			i.setUnSeen(temp);
+		}
 	}
 
 	public void setDisproved(String disproved) {
@@ -46,6 +51,14 @@ public class ClueGame {
 		return sugRoom;
 	}
 
+
+	public Card getDisprovedCard() {
+		return disprovedCard;
+	}
+
+	public void setDisprovedCard(Card disprovedCard) {
+		this.disprovedCard = disprovedCard;
+	}
 
 	public String getSugPerson() {
 		return sugPerson;
@@ -61,12 +74,6 @@ public class ClueGame {
 		return solution;
 	}
 
-
-	public void suggestion(Player currentPlayer){
-		//String roomSuggestion=rooms.get(gameBoard.
-		System.out.println(gameBoard.getRoomName(2, 2));
-		
-	}
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException{
 		FileReader reader = new FileReader(board);
 		Scanner in = new Scanner(reader);
@@ -134,9 +141,6 @@ public class ClueGame {
 			}
 			count++;
 		}
-		// System.out.println(players.get(0));
-		// System.out.println(players.get(1));
-		
 		
 		for(char key:rooms.keySet()) {
 			if(key != 'X' && key != 'W') {
@@ -151,27 +155,20 @@ public class ClueGame {
 				players.get(i);
 			}
 		}
-		ArrayList<String> strCards=new ArrayList<String>();
-		ArrayList<String> tempCards;
-		for(Card i: cards){
-		strCards.add(i.getName());
-		}
-		for(Player i: players){
-			tempCards = new ArrayList<String>(strCards);
-			ArrayList<String> seen=new ArrayList<String>();
-			for(int j=0; j<i.getCards().size(); j++){
-				seen.add(i.getCards().get(j).getName());	
-			}
+		
+		dealCards();
+		
+		ArrayList<Card> tempCards;
+		
+		for(Player i:players) {
+			tempCards = new ArrayList<Card>(cards);
+			ArrayList<Card> seen = new ArrayList<Card>(i.getCards());
 			tempCards.removeAll(seen);
 			i.setUnSeen(tempCards);
-		}
+		}		
 		readPlayer.close();
 	}
-	
-	public void  makeSuggestion(Player currentPlayer){
-		
-		
-	}
+
 	public Color convertColor(String strColor) {
 		Color color;
 		try {
@@ -198,9 +195,7 @@ public class ClueGame {
 						break;
 			case ROOM : roomCard.add(c.getName());
 						break;
-			}
-
-			
+			}	
 		}
 		solution.person = personCard.get(rand.nextInt(personCard.size()));
 		solution.room = roomCard.get(rand.nextInt(roomCard.size()));

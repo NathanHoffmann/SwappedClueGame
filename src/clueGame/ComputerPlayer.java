@@ -11,53 +11,35 @@ import clueGame.Card.cardType;
 
 public class ComputerPlayer extends Player {
 
-
-	public ArrayList<String> getSuggestion() {
-		return suggestion;
-	}
-
-
-	public void setSuggestion(ArrayList<String> suggestion) {
-		this.suggestion = suggestion;
-	}
 	private char lastRoom=' ';
 	private char secondLastRoom=' ';
-	private ArrayList<String>suggestion=new ArrayList<String>();
 
-	public void makeSuggestion(){
-		//ClueGame game=new ClueGame();
+	public void makeSuggestion(String room){
 		
+		setSugRoom(room);
 		String suggestWeapon="";
 		String suggestPerson="";
-		//to make sure to suggest room outside
-		//String suggestRoom;
-//suggestRoom=game.getBoard().getRooms().get(game.getBoard().getCellAt(this.getRow(), this.getCol()).getInitial1().charAt(0));
 
-		ArrayList<String>cards=new ArrayList<String>(getUnSeen());
+		ArrayList<Card>unSeenCards=new ArrayList<Card>(getUnSeen());
 		
-		for(int i=0; i<cards.size();i++){
-			Random rand=new Random();
+		Random rand=new Random();
+		int index;
 		
-			int index=rand.nextInt(cards.size());
-		
-				suggestPerson=cards.get(i);
-			
-		
-				suggestWeapon=cards.get(i);
-			if(suggestPerson.length()!=0&&suggestWeapon.length()!=0){
-				break;
+		while(suggestPerson.equals("") || suggestWeapon.equals("") ) {
+			index=rand.nextInt(cards.size());
+			if(unSeenCards.get(index).getType() == cardType.WEAPON) {
+				suggestWeapon = unSeenCards.get(index).getName();
+			} else if(unSeenCards.get(index).getType() == cardType.PERSON) {
+				suggestPerson = unSeenCards.get(index).getName();
 			}
 		}
-		//suggestion.add(suggestRoom);
-		suggestion.add(suggestPerson);
-		suggestion.add(suggestWeapon);
-		
+
+		setSugWeapon(suggestWeapon);
+		setSugPerson(suggestPerson);		
 	}
 	
 	
 	public void pickLocation(Set<BoardCell> targets){
-		//this.setRow(5);
-		//this.setCol(3);
 		ArrayList<BoardCell> doorLocation=new ArrayList<BoardCell>();
 		
 		for( BoardCell i: targets){
@@ -82,11 +64,5 @@ public class ComputerPlayer extends Player {
 			this.setCol(aTargets[index].getColumn());
 			
 		}
-		
 	}
-	public void createSuggestion(){
-		
-	}
-	
-	
 }

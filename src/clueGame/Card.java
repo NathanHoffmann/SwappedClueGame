@@ -27,23 +27,12 @@ public class Card {
 	public void setType(cardType type) {
 		this.type = type;
 	}
-	/*
-	public boolean equals(Card other){
-		if(name==other.name&&type==other.type){
-		return true;
-		}
-		return false;
-	}
-	*/
-	
+
 	// Testing
 	@Override
 	public String toString() {
 		return "Card [name=" + name + ", type=" + type + "]";
 	}
-	
-	
-
 }
 
 

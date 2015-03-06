@@ -5,27 +5,47 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-
 public class Player {
 
 	private String name;
 	private Color color;
 	private int row;
 	private int col;
-
-	private ArrayList<String> unSeen;
-	public ArrayList<String> getUnSeen(){
+	private String sugRoom;
+	private String sugWeapon;
+	private String sugPerson;
+	private ArrayList<Card> unSeen;
+	ArrayList<Card> cards=new ArrayList<Card>();
+	
+	public String getSugRoom() {
+		return sugRoom;
+	}
+	public void setSugRoom(String sugRoom) {
+		this.sugRoom = sugRoom;
+	}
+	public String getSugWeapon() {
+		return sugWeapon;
+	}
+	public void setSugWeapon(String sugWeapon) {
+		this.sugWeapon = sugWeapon;
+	}
+	public String getSugPerson() {
+		return sugPerson;
+	}
+	public void setSugPerson(String sugPerson) {
+		this.sugPerson = sugPerson;
+	}
+	
+	public ArrayList<Card> getUnSeen(){
 		return unSeen;
 	}
 	public void updateUnSeen(String seen){
 		unSeen.remove(seen);
 		
 	}
-	public void setUnSeen(ArrayList<String> unseen){
-		unSeen=new ArrayList<String>(unseen);
+	public void setUnSeen(ArrayList<Card> unseen){
+		unSeen=new ArrayList<Card>(unseen);
 	}
-
-	ArrayList<Card> cards=new ArrayList<Card>();
 	
 	public int getRow() {
 		return row;

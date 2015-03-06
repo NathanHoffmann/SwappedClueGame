@@ -24,9 +24,9 @@ public class ClueGame {
 	private String legend;
 	private String playerConfig;
 	private Solution solution = new Solution();
-
 	private Card disprovedCard;
 	private String disproved;
+	
 	
 	public String getDisproved() {
 		return disproved;
@@ -121,6 +121,20 @@ public class ClueGame {
 			if(players.get(i).getClass()==ComputerPlayer.class){
 				players.get(i);
 			}
+		}
+		ArrayList<String> strCards=new ArrayList<String>();
+		ArrayList<String> tempCards;
+		for(Card i: cards){
+		strCards.add(i.getName());
+		}
+		for(Player i: players){
+			tempCards = new ArrayList<String>(strCards);
+			ArrayList<String> seen=new ArrayList<String>();
+			for(int j=0; j<i.getCards().size(); j++){
+				seen.add(i.getCards().get(j).getName());	
+			}
+			tempCards.removeAll(seen);
+			i.setUnSeen(tempCards);
 		}
 		readPlayer.close();
 	}

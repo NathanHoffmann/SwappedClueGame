@@ -106,6 +106,8 @@ public class GameActionTests {
 	public void testMakingSuggestion() {
 		ArrayList<String>unseen=new ArrayList<String>();
 
+		/*
+		game.suggestion(game.getPlayers().get(2));
 		unseen.add("Rev. Green");
 		unseen.add("Pistol");
 		unseen.add("Library");	
@@ -117,6 +119,30 @@ public class GameActionTests {
 		assertTrue(unseen.contains(((ComputerPlayer) game.getPlayers().get(j)).getSuggestion().get(i)));
 		}		
 		}
+		*/
+		unseen.add("Rev. Green");
+		unseen.add("Pistol");
+		unseen.add("Library");	
+		game.getPlayers().get(1).setUnSeen(unseen);	
+		game.suggestion(game.getPlayers().get(2));
+		assertTrue(game.getSugPerson()=="Rev. Green");
+		assertTrue(game.getSugWeapon()=="Pistol");
+		assertTrue(game.getSugRoom()=="Library");
+		ArrayList<String> seen=new ArrayList<String>();
+		unseen.add("Knife");		
+		game.getPlayers().get(1).setUnSeen(unseen);	
+		game.setDisproved(seen.get(0));
+		assertTrue(game.getPlayers().get(1).getUnSeen().contains("Knife"));
+		game.removeSeen();
+		
+		assertFalse(game.getPlayers().get(1).getUnSeen().contains("Knife"));
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	

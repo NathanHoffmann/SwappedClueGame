@@ -37,7 +37,9 @@ public class Board {
 			}
 		}
 	}
-	
+	public String getRoomName(int row , int col){
+		return rooms.get(getCellAt(row, col).getInitial1().charAt(0));
+	}
 	public void setLegend(String legend) {
 		this.legend = legend;
 	}
@@ -138,7 +140,8 @@ public class Board {
 	public RoomCell getRoomCellAt(int row, int col){
 		return layoutRoom[row][col];
 	}
-	public clueGame.BoardCell getCellAt(int row, int col){
+	//changed clueGame.BoardCell to BoardCell
+	public BoardCell getCellAt(int row, int col){
 		return layout[row][col];
 	}
 

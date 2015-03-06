@@ -27,9 +27,33 @@ public class ClueGame {
 	private Card disprovedCard;
 	private String disproved;
 	
-	
+	private String sugRoom;
+	private String sugPerson;
+	private String sugWeapon;
 	public String getDisproved() {
 		return disproved;
+	}
+
+	public void removeSeen(){
+		
+	}
+
+	public void setDisproved(String disproved) {
+		this.disproved = disproved;
+	}
+
+	public String getSugRoom() {
+		return sugRoom;
+	}
+
+
+	public String getSugPerson() {
+		return sugPerson;
+	}
+
+
+	public String getSugWeapon() {
+		return sugWeapon;
 	}
 
 
@@ -38,6 +62,11 @@ public class ClueGame {
 	}
 
 
+	public void suggestion(Player currentPlayer){
+		//String roomSuggestion=rooms.get(gameBoard.
+		System.out.println(gameBoard.getRoomName(2, 2));
+		
+	}
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException{
 		FileReader reader = new FileReader(board);
 		Scanner in = new Scanner(reader);

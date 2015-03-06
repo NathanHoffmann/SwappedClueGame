@@ -151,55 +151,55 @@ public class GameActionTests {
 		Card diningCard = new Card("Dining Room",cardType.ROOM);
 		Card ballCard = new Card("Ballroom",cardType.ROOM);
 		// Set up players to be in specific order
-		HumanPlayer p1 = new HumanPlayer();
-		ComputerPlayer p2 = new ComputerPlayer();
-		ComputerPlayer p3 = new ComputerPlayer();
-		ComputerPlayer p4 = new ComputerPlayer();
-		ComputerPlayer p5 = new ComputerPlayer();
-		ComputerPlayer p6 = new ComputerPlayer();
-		ArrayList<Player> players = new ArrayList<Player>();
-		players.add(p1);
-		players.add(p2);
-		players.add(p3);
-		players.add(p4);
-		players.add(p5);
-		players.add(p6);
-		players.get(0).cards.add(scarletCard);
-		players.get(0).cards.add(PistolCard);
-		players.get(0).cards.add(kitchenCard);
-		players.get(1).cards.add(greenCard);
-		players.get(1).cards.add(poisonCard);
-		players.get(1).cards.add(libraryCard);
-		players.get(2).cards.add(whiteCard);
-		players.get(2).cards.add(ropeCard);
-		players.get(2).cards.add(loungeCard);
-		players.get(3).cards.add(mustardCard);
-		players.get(3).cards.add(axeCard);
-		players.get(3).cards.add(hallCard);
-		players.get(4).cards.add(peacockCard);
-		players.get(4).cards.add(knifeCard);
-		players.get(4).cards.add(diningCard);
-		players.get(5).cards.add(plumCard);
-		players.get(5).cards.add(anvilCard);
-		players.get(5).cards.add(ballCard);
+		//HumanPlayer p1 = new HumanPlayer();
+		//ComputerPlayer p2 = new ComputerPlayer();
+		//ComputerPlayer p3 = new ComputerPlayer();
+		//ComputerPlayer p4 = new ComputerPlayer();
+		//ComputerPlayer p5 = new ComputerPlayer();
+		//ComputerPlayer p6 = new ComputerPlayer();
+		//ArrayList<Player> players = new ArrayList<Player>();
+		game.players.get(0).cards.clear();
+		game.players.get(1).cards.clear();
+		game.players.get(2).cards.clear();
+		game.players.get(3).cards.clear();
+		game.players.get(4).cards.clear();
+		game.players.get(5).cards.clear();
+		game.players.get(0).cards.add(scarletCard);
+		game.players.get(0).cards.add(PistolCard);
+		game.players.get(0).cards.add(kitchenCard);
+		game.players.get(1).cards.add(greenCard);
+		game.players.get(1).cards.add(poisonCard);
+		game.players.get(1).cards.add(libraryCard);
+		game.players.get(2).cards.add(whiteCard);
+		game.players.get(2).cards.add(ropeCard);
+		game.players.get(2).cards.add(loungeCard);
+		game.players.get(3).cards.add(mustardCard);
+		game.players.get(3).cards.add(axeCard);
+		game.players.get(3).cards.add(hallCard);
+		game.players.get(4).cards.add(peacockCard);
+		game.players.get(4).cards.add(knifeCard);
+		game.players.get(4).cards.add(diningCard);
+		game.players.get(5).cards.add(plumCard);
+		game.players.get(5).cards.add(anvilCard);
+		game.players.get(5).cards.add(ballCard);
 		// Actual tests
 		// Test where no one has the cards
-		game.handleSuggestion("Other Person", "TNT", "Billiard Room", players.get(0));
+		game.handleSuggestion("Other Person", "TNT", "Billiard Room", game.players.get(0));
 		assertEquals(null,game.getDisproved());
 		// Test where the human has the card
-		game.handleSuggestion("Ms. Scarlet", "TNT", "Billiard Room", players.get(1));
-		assertEquals(null,game.getDisproved());
+		game.handleSuggestion("Ms. Scarlet", "TNT", "Billiard Room", game.players.get(1));
+		assertEquals("Ms. Scarlet",game.getDisproved());
 		// Test where the current person can disprove (computer)
-		game.handleSuggestion("Rev. Green", "TNT", "Billiard Room", players.get(1));
+		game.handleSuggestion("Rev. Green", "TNT", "Billiard Room", game.players.get(1));
 		assertEquals(null,game.getDisproved());
 		// Test where the current person can disprove (human)
-		game.handleSuggestion("Ms. Scarlet", "TNT", "Billiard Room", players.get(0));
+		game.handleSuggestion("Ms. Scarlet", "TNT", "Billiard Room", game.players.get(0));
 		assertEquals(null,game.getDisproved());
 		// Test where two players can disprove
-		game.handleSuggestion("Col. Mustard", "Anvil", "Billiard Room", players.get(1));
+		game.handleSuggestion("Col. Mustard", "Anvil", "Billiard Room", game.players.get(1));
 		assertEquals("Col. Mustard",game.getDisproved());
 		// Test where the last person can disprove
-		game.handleSuggestion("Other Person", "TNT", "Ballroom", players.get(3));
+		game.handleSuggestion("Other Person", "TNT", "Ballroom", game.players.get(3));
 		assertEquals("Ballroom",game.getDisproved());
 		
 		

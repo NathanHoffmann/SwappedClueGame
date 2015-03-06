@@ -24,6 +24,7 @@ public class ClueGame {
 	private String legend;
 	private String playerConfig;
 	private Solution solution = new Solution();
+	private Card disprovedCard;
 	private String disproved;
 	
 	public String getDisproved() {
@@ -83,9 +84,7 @@ public class ClueGame {
 			switch(split[0]){
 			case "P" :
 				if(count == 0) tempPlayer = new HumanPlayer();
-				else{ System.out.println("in else"); 
-					tempPlayer = new ComputerPlayer();
-				}
+				else tempPlayer = new ComputerPlayer();
 				tempPlayer.setName(split[1]);
 				tempPlayer.setColor(convertColor(split[2]));
 				tempPlayer.setCol(Integer.parseInt(split[3]));
@@ -104,8 +103,8 @@ public class ClueGame {
 			}
 			count++;
 		}
-		System.out.println(players.get(0));
-		System.out.println(players.get(1));
+		// System.out.println(players.get(0));
+		// System.out.println(players.get(1));
 		
 		
 		for(char key:rooms.keySet()) {
@@ -192,7 +191,17 @@ public class ClueGame {
 	}
 	
 	public void handleSuggestion(String person, String weapon, String room, Player accusingPerson) {
+		disprovedCard = null;
 		
+		for(Player i:players) {
+			if(!i.equals(accusingPerson)) {
+				disprovedCard = i.disproveSuggestion(person, weapon, room);
+				if(disprovedCard != null) break;
+			}
+		}
+		if(disprovedCard != null) {
+			disproved = disprovedCard.getName();
+		} else disproved = null;
 	}
 	
 	public ClueGame() {

@@ -24,6 +24,11 @@ public class ClueGame {
 	private String legend;
 	private String playerConfig;
 	private Solution solution = new Solution();
+	private String disproved;
+	
+	public String getDisproved() {
+		return disproved;
+	}
 
 	public Solution getSolution() {
 		return solution;
@@ -186,6 +191,10 @@ public class ClueGame {
 		
 		if(checkWeapon && checkRoom && checkPerson) return true;
 		return false;
+	}
+	
+	public void handleSuggestion(String person, String weapon, String room, Player accusingPerson) {
+		
 	}
 	
 	public ClueGame() {

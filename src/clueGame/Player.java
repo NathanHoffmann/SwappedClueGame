@@ -11,6 +11,8 @@ public class Player {
 	private Color color;
 	private int row;
 	private int col;
+	ArrayList<Card> cards=new ArrayList<Card>();
+	
 	
 	public int getRow() {
 		return row;
@@ -51,6 +53,11 @@ public class Player {
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
+	
+	public Card disproveSuggestion(String person, String weapon, String room) {
+		// Needs changing
+		return cards.get(0);
+	}
 
-	ArrayList<Card> cards=new ArrayList<Card>();
+
 }

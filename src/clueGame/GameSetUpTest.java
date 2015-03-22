@@ -21,11 +21,7 @@ public class GameSetUpTest {
 	public void setUp() throws Exception {
 	    game=new ClueGame();
 		game.loadConfigFiles();
-		// just for testing \/
-		game.dealCards();
 	}
-	
-	// Wasn't worked on, so just commented out for other tests
 	
 	@Test
 	public void loadCardtest() throws FileNotFoundException , BadConfigFormatException {
@@ -86,16 +82,18 @@ public class GameSetUpTest {
 		dealtCards.addAll(game.getPlayers().get(i).getCards());
 		}
 
-		System.out.println(dealtCards.size());
-		Assert.assertEquals(23, dealtCards.size());
+		
+		Assert.assertEquals(20, dealtCards.size());
+
 		Set<String> solutionCards=new HashSet<String>();
 
 		solutionCards.add(game.getSolution().person);
 		solutionCards.add(game.getSolution().weapon);
 		solutionCards.add(game.getSolution().room);
 	
-		
-		Assert.assertEquals(26, dealtCards.size()+solutionCards.size());
+
+		Assert.assertEquals(23, dealtCards.size()+solutionCards.size());
+
 		//all players have roughly the same number of cards.
 		for(int i=0; i<game.getPlayers().size();i++){
 			for(int j=i; j<game.getPlayers().size();j++){

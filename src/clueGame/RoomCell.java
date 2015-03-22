@@ -1,11 +1,24 @@
 package clueGame;
 
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Arrays;
 
+
+
 public class RoomCell extends BoardCell {
+	
 	public RoomCell(int column, int row) {
 		super(column, row);
+		Board board=new Board();
+		
+		//draw(g, board);
 		}
+	
+	public void draw(Graphics g, Board board){
+		board.paintComponent( g);
+		
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

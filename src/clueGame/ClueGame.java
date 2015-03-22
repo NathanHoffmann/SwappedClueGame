@@ -1,6 +1,9 @@
 package clueGame;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
@@ -11,9 +14,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.*;
+
 import clueGame.Card.cardType;
 
-public class ClueGame {
+public class ClueGame extends JFrame {
 	ArrayList<Player> players=new ArrayList<Player>();
 	ArrayList<Card> cards=new ArrayList<Card>();
 	private Map<Character, String> rooms;
@@ -30,6 +35,40 @@ public class ClueGame {
 	private String sugRoom;
 	private String sugPerson;
 	private String sugWeapon;
+	
+	
+	public ClueGame() {
+		this.board = "ClueLayout.csv";
+		this.legend = "Legend.txt";
+		this.playerConfig = "playerConfigFile.txt";
+		setSize(720,630);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		menuBar.add(createFileMenu());
+
+		gameBoard=new Board();
+		add(gameBoard, BorderLayout.CENTER);
+	}
+	private JMenu createFileMenu()
+	{
+	  JMenu menu = new JMenu("File"); 
+	  menu.add(createFileExitItem());
+	  return menu;
+	}
+	private JMenuItem createFileExitItem()
+	{
+	  JMenuItem item = new JMenuItem("Exit");
+	  class MenuItemListener implements ActionListener {
+	    public void actionPerformed(ActionEvent e)
+	    {
+	       System.exit(0);
+	    }
+	  }
+	  item.addActionListener(new MenuItemListener());
+	  return item;
+	}
+
 	
 	public String getDisproved() {
 		return disproved;
@@ -99,6 +138,7 @@ public class ClueGame {
 		gameBoard.setLegend(legend);
 		gameBoard.loadBoardConfig();
 		rooms = gameBoard.getRooms();
+		add(gameBoard, BorderLayout.CENTER);
 		try {
 			loadPlayerConfig();
 		} catch(Exception e) {
@@ -208,6 +248,7 @@ public class ClueGame {
 				}
 				else {
 					j--;
+					
 				}
 				i++;
 			}
@@ -253,11 +294,7 @@ public class ClueGame {
 		} else disproved = null;
 	}
 	
-	public ClueGame() {
-		this.board = "ClueLayout.csv";
-		this.legend = "Legend.txt";
-		this.playerConfig = "playerConfigFile.txt";
-	}
+
 	public ClueGame(String string, String string2) throws FileNotFoundException, BadConfigFormatException {
 		this.board= string;
 		this.legend = string2;
@@ -267,5 +304,9 @@ public class ClueGame {
 	}
 	public Board getBoard(){
 		return gameBoard;
+	}
+	public static void main(String [] args){
+		ClueGame gui=new ClueGame();
+		gui.setVisible(true);
 	}
 }

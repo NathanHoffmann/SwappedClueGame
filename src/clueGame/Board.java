@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Arrays;
@@ -10,12 +11,30 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.*;
+
+import com.sun.prism.Graphics;
+
+
+
 import clueGame.RoomCell.DoorDirection;
 
 //import ClueLayout.BoardCell;
 
-public class Board {
-	private clueGame.BoardCell[][] layout;
+public class Board extends JPanel {
+	public void paintComponent(java.awt.Graphics g){
+		super.paintComponent(g);
+		g.setColor(Color.yellow);
+		g.fillRect(numColumns, numRows, 30, 30);
+
+
+	
+	}
+	public Board(){
+		
+	}
+	
+	private BoardCell[][] layout;
 	private RoomCell[][] layoutRoom;
 	private WalkwayCell[][] layoutWalkway;
 	private Map<Character, String> rooms;
@@ -122,7 +141,7 @@ public class Board {
 		return "Board [layout=" + Arrays.toString(layout) + "]";
 	}
 
-	public clueGame.BoardCell[][] getLayout() {
+	public BoardCell[][] getLayOut() {
 		return layout;
 	}
 

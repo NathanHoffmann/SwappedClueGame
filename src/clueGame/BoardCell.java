@@ -1,10 +1,14 @@
 package clueGame;
 
+import com.sun.prism.Graphics;
+
 public class BoardCell {
 	private int x;
 	private int y;
 	private String initial1;
 	private BoardCell[][] layout;
+	
+
 	
 	public void setInitial(String initial) {
 		initial1= initial;

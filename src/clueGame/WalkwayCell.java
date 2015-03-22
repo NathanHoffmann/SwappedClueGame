@@ -1,5 +1,7 @@
 package clueGame;
 
+import com.sun.prism.Graphics;
+
 public class WalkwayCell extends BoardCell {
 
 	public WalkwayCell(int row, int column) {
@@ -7,4 +9,8 @@ public class WalkwayCell extends BoardCell {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	public void draw(Graphics g, Board board){
+		
+	}
 }

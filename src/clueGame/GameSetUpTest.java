@@ -86,8 +86,8 @@ public class GameSetUpTest {
 		dealtCards.addAll(game.getPlayers().get(i).getCards());
 		}
 
-		//System.out.println();
-		Assert.assertEquals(20, dealtCards.size());
+		System.out.println(dealtCards.size());
+		Assert.assertEquals(23, dealtCards.size());
 		Set<String> solutionCards=new HashSet<String>();
 
 		solutionCards.add(game.getSolution().person);
@@ -95,7 +95,7 @@ public class GameSetUpTest {
 		solutionCards.add(game.getSolution().room);
 	
 		
-		Assert.assertEquals(23, dealtCards.size()+solutionCards.size());
+		Assert.assertEquals(26, dealtCards.size()+solutionCards.size());
 		//all players have roughly the same number of cards.
 		for(int i=0; i<game.getPlayers().size();i++){
 			for(int j=i; j<game.getPlayers().size();j++){

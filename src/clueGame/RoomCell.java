@@ -19,12 +19,10 @@ public class RoomCell extends BoardCell {
 		//draw(g, board);
 		}
 	@Override
-	public void draw(Graphics g){
-	
+	public void draw(Graphics g){	
+		System.out.println("this is a test");
 		g.setColor(Color.BLUE);
 		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
-	
-		
 	}
 	@Override
 	public int hashCode() {

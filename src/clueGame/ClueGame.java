@@ -42,14 +42,14 @@ public class ClueGame extends JFrame {
 		this.board = "ClueLayout.csv";
 		this.legend = "Legend.txt";
 		this.playerConfig = "playerConfigFile.txt";
-		setSize(720,630);
+		setSize(720,800);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
-		
-		gameBoard=new Board();
-		//add(gameBoard, BorderLayout.CENTER);
+		loadConfigFiles();
+		gameBoard=new Board(rows, cols);
+		add(gameBoard, BorderLayout.CENTER);
 		
 	}
 	private JMenu createFileMenu()
@@ -143,7 +143,7 @@ public class ClueGame extends JFrame {
 		gameBoard.loadBoardConfig();
 		rooms = gameBoard.getRooms();
 		add(gameBoard, BorderLayout.CENTER);
-		repaint();
+		//repaint();
 		try {
 			loadPlayerConfig();
 		} catch(Exception e) {

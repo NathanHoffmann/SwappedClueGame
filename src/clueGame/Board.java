@@ -27,11 +27,14 @@ public class Board extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.setColor(Color.yellow);
-		g.fillRect(30, 200, 30, 30);
-		
+		g.fillRect(30, 200, 30, 30);		
 		for(BoardCell[] i: layout){
 			for(BoardCell j: i){
-				j.draw(g);
+				if(j.isRoom()){
+					((RoomCell)j).draw(g);
+				}
+				else j.draw(g);
+				
 			}
 			
 		}

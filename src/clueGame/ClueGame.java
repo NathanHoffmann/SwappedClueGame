@@ -37,7 +37,8 @@ public class ClueGame extends JFrame {
 	private String sugWeapon;
 	
 	
-	public ClueGame() {
+	public ClueGame() throws FileNotFoundException, BadConfigFormatException {
+		
 		this.board = "ClueLayout.csv";
 		this.legend = "Legend.txt";
 		this.playerConfig = "playerConfigFile.txt";
@@ -46,9 +47,10 @@ public class ClueGame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
-
+		
 		gameBoard=new Board();
-		add(gameBoard, BorderLayout.CENTER);
+		//add(gameBoard, BorderLayout.CENTER);
+		
 	}
 	private JMenu createFileMenu()
 	{
@@ -141,6 +143,7 @@ public class ClueGame extends JFrame {
 		gameBoard.loadBoardConfig();
 		rooms = gameBoard.getRooms();
 		add(gameBoard, BorderLayout.CENTER);
+		repaint();
 		try {
 			loadPlayerConfig();
 		} catch(Exception e) {
@@ -318,7 +321,7 @@ public class ClueGame extends JFrame {
 	public Board getBoard(){
 		return gameBoard;
 	}
-	public static void main(String [] args){
+	public static void main(String [] args) throws FileNotFoundException, BadConfigFormatException{
 		ClueGame gui=new ClueGame();
 		gui.setVisible(true);
 	}

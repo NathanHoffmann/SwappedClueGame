@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Arrays;
@@ -7,16 +8,22 @@ import java.util.Arrays;
 
 
 public class RoomCell extends BoardCell {
-	
+	private int x;
+	private int y;
 	public RoomCell(int column, int row) {
 		super(column, row);
-		Board board=new Board();
+		//Board board=new Board();
+		x=column;
+		y=row;
 		
 		//draw(g, board);
 		}
+	@Override
+	public void draw(Graphics g){
 	
-	public void draw(Graphics g, Board board){
-		board.paintComponent( g);
+		g.setColor(Color.BLUE);
+		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
+	
 		
 	}
 	@Override

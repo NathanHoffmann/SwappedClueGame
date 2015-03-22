@@ -14,7 +14,7 @@ import java.util.Set;
 
 import javax.swing.*;
 
-import com.sun.prism.Graphics;
+
 
 
 
@@ -24,15 +24,20 @@ import clueGame.RoomCell.DoorDirection;
 //import ClueLayout.BoardCell;
 
 public class Board extends JPanel {
-	public void paintComponent(java.awt.Graphics g){
+	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.setColor(Color.yellow);
-		g.fillRect(numColumns, numRows, 30, 30);
-
-
-	
+		g.fillRect(30, 200, 30, 30);
+		
+		for(BoardCell[] i: layout){
+			for(BoardCell j: i){
+				j.draw(g);
+			}
+			
+		}
+				
 	}
-	public Board(){
+	public Board() throws FileNotFoundException, BadConfigFormatException{
 		
 	}
 	
@@ -47,6 +52,11 @@ public class Board extends JPanel {
 	private Map< BoardCell, LinkedList<BoardCell>> adjacencies;
 	private HashSet<BoardCell> visited;
 	private HashSet<BoardCell> targets;
+	Graphics g;
+	
+	public void setGraphics(Graphics g){
+		this.g=g;
+	}
 	
 	public Board(int rows, int cols){
 		this.numRows = rows;
@@ -57,6 +67,7 @@ public class Board extends JPanel {
 				layout[i][j] =new clueGame.BoardCell(i, j);
 			}
 		}
+		setLayout(new GridLayout(numRows, numColumns));
 	}
 	public String getRoomName(int row , int col){
 		return rooms.get(getCellAt(row, col).getInitial1().charAt(0));
@@ -70,6 +81,7 @@ public class Board extends JPanel {
 	}
 
 	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException{
+		
 		layoutRoom = new RoomCell[numRows][numColumns];
 		layoutWalkway = new WalkwayCell[numRows][numColumns];
 		rooms = new HashMap<Character, String>();
@@ -132,7 +144,7 @@ public class Board extends JPanel {
 					hold1.setDoorDirection(holdDoor);
 					layoutRoom[k][n] = hold1;
 				}
-					
+				
 			}
 		}
 		calcAdjacencies();

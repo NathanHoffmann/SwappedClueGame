@@ -1,19 +1,28 @@
 package clueGame;
 
-import com.sun.prism.Graphics;
+import java.awt.Color;
+import java.awt.Graphics;
+
+
 
 public class BoardCell {
 	private int x;
 	private int y;
 	private String initial1;
 	private BoardCell[][] layout;
-	
+	protected final int cellSize=30;
 
 	
 	public void setInitial(String initial) {
 		initial1= initial;
 	}
-	
+	public void draw(Graphics g){
+		g.setColor(Color.YELLOW);
+		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
+		g.setColor(Color.BLACK);
+		g.drawRect(cellSize*x, cellSize*y, cellSize, cellSize);
+		
+	}
 	public boolean isWalkway(){
 		if (initial1.charAt(0) == 'W'){
 			return true;

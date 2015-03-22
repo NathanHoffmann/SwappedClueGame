@@ -10,7 +10,7 @@ public class WalkwayCell extends BoardCell {
 	}
 
 	
-	public void draw(Graphics g, Board board){
+	public void draw(Graphics g){
 		
 	}
 }

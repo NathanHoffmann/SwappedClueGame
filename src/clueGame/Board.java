@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JPanel;
+
 import clueGame.RoomCell.DoorDirection;
 
 //import ClueLayout.BoardCell;

@@ -73,6 +73,8 @@ public class ClueGame {
 	public Solution getSolution() {
 		return solution;
 	}
+	
+	
 
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException{
 		FileReader reader = new FileReader(board);
@@ -183,36 +185,47 @@ public class ClueGame {
 		int i=0;
 
 		Random rand = new Random();
-		ArrayList<String> roomCard = new ArrayList<String>();
-		ArrayList<String> weaponCard = new ArrayList<String>();
-		ArrayList<String> personCard = new ArrayList<String>();
+		ArrayList<Card> roomCard = new ArrayList<Card>();
+		ArrayList<Card> weaponCard = new ArrayList<Card>();
+		ArrayList<Card> personCard = new ArrayList<Card>();
 		
 		for(Card c:cards) {
 			switch(c.getType()) {
-			case PERSON : personCard.add(c.getName());
+			case PERSON : personCard.add(c);
 						break;
-			case WEAPON : weaponCard.add(c.getName());
+			case WEAPON : weaponCard.add(c);
 						break;
-			case ROOM : roomCard.add(c.getName());
+			case ROOM : roomCard.add(c);
 						break;
 			}	
 		}
-		solution.person = personCard.get(rand.nextInt(personCard.size()));
-		solution.room = roomCard.get(rand.nextInt(roomCard.size()));
-		solution.weapon = weaponCard.get(rand.nextInt(weaponCard.size()));
+		
+		Card tempPersonCard = new Card();
+		Card tempWeaponCard = new Card();
+		Card tempRoomCard = new Card();
+		
+		tempPersonCard = personCard.get(rand.nextInt(personCard.size()));
+		solution.person = tempPersonCard.getName();
+
+		tempRoomCard = roomCard.get(rand.nextInt(roomCard.size()));
+		solution.room = tempRoomCard.getName();
+
+		tempWeaponCard = weaponCard.get(rand.nextInt(weaponCard.size()));
+		solution.weapon = tempWeaponCard.getName();
+		
 		while(i<cards.size()){
 			for(int j=0; j<players.size()&&i<cards.size();j++){
-				if(!cards.get(i).getName().equals(solution.weapon)&&!cards.get(i).getName().equals(solution.person)&&!cards.get(i).getName().equals(solution.room)){
-
-				players.get(j).getCards().add(cards.get(i));
+				if(!cards.get(i).equals(tempPersonCard)&&!cards.get(i).equals(tempRoomCard)&&!cards.get(i).equals(tempWeaponCard)){
+					players.get(j).getCards().add(cards.get(i));
 				}
 				else {
 					j--;
 				}
 				i++;
 			}
-		}
+		}	
 	}
+	
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}

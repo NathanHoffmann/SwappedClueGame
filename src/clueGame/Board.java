@@ -27,12 +27,14 @@ public class Board extends JPanel {
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		
 		g.setColor(Color.yellow);
 		g.fillRect(30, 200, 30, 30);		
 		for(BoardCell[] i: layout){
 			for(BoardCell j: i){
-
-				if(j.isDoorway()){
+				j.draw(g);
+				/*
+				if(j.isRoom()){
 					
 					j.draw(g);
 					System.out.println("here");
@@ -41,12 +43,13 @@ public class Board extends JPanel {
 					
 					//System.out.println(j.getRow() + " "+j.getColumn() + " :" + j.getInitial1());
 					j.draw(g);
+					System.out.println("there");
 				}
-
+*/
 				
-				}
 			}
 		}
+	}
 				
 	public Board() throws FileNotFoundException, BadConfigFormatException{
 		
@@ -122,6 +125,7 @@ public class Board extends JPanel {
 				layout[j][i]=new WalkwayCell(j,i);
 				
 				else layout[j][i]=new RoomCell(j,i);
+				//System.out.println(split2[i]);
 				layout[j][i].setInitial(split2[i]);
 			}
 			j++;
@@ -132,8 +136,10 @@ public class Board extends JPanel {
 				if ( hold.isWalkway()) {
 					int holdrow = layout[k][n].getRow();
 					int holdcol = layout[k][n].getColumn();
-					WalkwayCell hold1 = new WalkwayCell(holdrow, holdcol);
+					//WalkwayCell hold1 = new WalkwayCell(holdrow, holdcol);
 					layoutWalkway[k][n] = new WalkwayCell(holdrow, holdcol);
+					// Trying
+					layout[k][n]=layoutWalkway[k][n];
 					
 				}
 				else if (hold.isRoom()) {
@@ -143,15 +149,34 @@ public class Board extends JPanel {
 					RoomCell hold1 = new RoomCell(holdrow, holdcol);
 					String holdInit = layout[k][n].getInitial1();
 					Character holdChar = holdInit.charAt(0);
+					if(holdInit.length() == 2) {
+						//System.out.println("here");
+						hold1.setDoorDirection(holdInit.charAt(1));
+					}
+					
+					
 					if(!rooms.containsKey(holdChar)) {
 						throw new BadConfigFormatException();
 					}
 					hold1.setRoomInitial(holdChar);
-					hold1.setDoorDirection('N');
+					if(hold1.isDoorway()) {
+						//System.out.println("here2");
+						//System.out.println(holdInit);
+						Character holdDoor = holdInit.charAt(1);
+						hold1.setDoorDirection(holdDoor);
+					} else {
+						hold1.setDoorDirection('N');						
+					}
+					
+					//System.out.println("here");
 					layoutRoom[k][n] = hold1;
+					//System.out.println(layoutRoom[k][n].isDoorway());
+					layout[k][n]=layoutRoom[k][n];
 					
 				}
+				// Never gets in since doorway is a room
 				else if(hold.isDoorway()) {
+					//System.out.println("Here");
 					int holdrow = layout[k][n].getRow();
 					int holdcol = layout[k][n].getColumn();
 					RoomCell hold1 = new RoomCell(holdrow, holdcol);
@@ -161,7 +186,8 @@ public class Board extends JPanel {
 					hold1.setRoomInitial(holdChar);
 					hold1.setDoorDirection(holdDoor);
 					layoutRoom[k][n] = hold1;
-					System.out.println("Test");
+					//System.out.println("Test");
+					layout[k][n]=layoutRoom[k][n];
 				}
 				
 			}
@@ -219,7 +245,9 @@ public class Board extends JPanel {
 			
 			for (int j = 0; j<numColumns; j++) {
 				LinkedList<BoardCell> hold = new LinkedList<BoardCell>();
+				//System.out.println(layout[i][j]);
 				if( layout[i][j].isDoorway()){
+					//System.out.println("Gets here");
 					int x = layout[i][j].getRow();
 					int y = layout[i][j].getColumn();
 					RoomCell.DoorDirection dd = layoutRoom[i][j].getDoorDirection();

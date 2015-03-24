@@ -9,7 +9,7 @@ public abstract class BoardCell {
 	protected int x;
 	protected int y;
 	private String initial1;
-	private BoardCell[][] layout;
+	//private BoardCell[][] layout;
 	protected final int cellSize=30;
 
 	
@@ -29,6 +29,7 @@ public abstract class BoardCell {
 			return true;
 		}
 		else 
+			System.out.println(initial1.charAt(0));
 			return false;
 	}
 	public boolean isRoom(){

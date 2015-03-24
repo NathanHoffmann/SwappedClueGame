@@ -1,11 +1,5 @@
 package clueGame;
-/*
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-*/
+
 import java.awt.*;
 import java.util.Arrays;
 
@@ -14,18 +8,20 @@ import java.util.Arrays;
 public class RoomCell extends BoardCell {
 	private int x;
 	private int y;
+	private DoorDirection doorDirection;
+	private BoardCell[][] cell;
+	private Character roomInitial;
+	private String roomName = null;
+	private boolean nameLocation = false;
+	
 	public RoomCell(int row, int column) {
 		super(row, column);
-		//Board board=new Board();
 		x=column;
 		y=row;
-		
-		
-		//draw(g, board);
-		}
+	}
+	
 	@Override
 	public void draw(Graphics g){	
-		//System.out.println(doorDirection);
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
 		g.setColor(Color.BLUE);
@@ -38,7 +34,13 @@ public class RoomCell extends BoardCell {
 			
 		default: 	break;
 		}
-		g.setColor(Color.LIGHT_GRAY);
+
+		if(nameLocation) {
+			g.setColor(Color.BLUE);
+			g.drawString(roomName, cellSize*x, cellSize*y-thickness);
+		}
+		
+		g.setColor(Color.LIGHT_GRAY);		
 	}
 	@Override
 	public int hashCode() {
@@ -72,10 +74,6 @@ public class RoomCell extends BoardCell {
 			return false;
 		return true;
 	}
-
-	private DoorDirection doorDirection;
-	private BoardCell[][] cell;
-	private Character roomInitial;
 	
 	public enum DoorDirection {LEFT, RIGHT, UP, DOWN, NONE};
 
@@ -96,9 +94,17 @@ public class RoomCell extends BoardCell {
 			doorDirection = DoorDirection.DOWN;
 		}
 		if (c=='N'){
-			doorDirection = DoorDirection.NONE;
+			doorDirection = DoorDirection.NONE;			
 		}
 	}
+	public void setNameLocation(boolean nameLocation) {
+		this.nameLocation = nameLocation;
+	}
+	
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+
 	public boolean isRoom(){
 			return true;
 	}
@@ -118,6 +124,7 @@ public class RoomCell extends BoardCell {
 	public Character getInitial() {
 		return roomInitial;
 	}
+		
 	public void setRoomInitial(Character c){
 		this.roomInitial = c;
 	}

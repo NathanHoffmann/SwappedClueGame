@@ -43,7 +43,7 @@ public class GameSetUpTest {
 		// select one room, one weapon, and one person, and ensure the deck contains each of those
 		Set<String>cardName=new HashSet<String>();
 		for(int i=0 ; i<game.getCards().size();i++){
-		cardName.add(game.getCards().get(i).getName());
+			cardName.add(game.getCards().get(i).getName());
 		}
 		Assert.assertTrue(cardName.contains("Ms. Scarlet"));
 		Assert.assertTrue(cardName.contains("TNT"));
@@ -79,18 +79,15 @@ public class GameSetUpTest {
 		//also test one card is not given to two different players.
 		Set<Card> dealtCards= new HashSet<Card>();
 		for(int i=0; i<game.getPlayers().size();i++){
-		dealtCards.addAll(game.getPlayers().get(i).getCards());
+			dealtCards.addAll(game.getPlayers().get(i).getCards());
 		}
 
-		
 		Assert.assertEquals(20, dealtCards.size());
-
 		Set<String> solutionCards=new HashSet<String>();
 
 		solutionCards.add(game.getSolution().person);
 		solutionCards.add(game.getSolution().weapon);
 		solutionCards.add(game.getSolution().room);
-	
 
 		Assert.assertEquals(23, dealtCards.size()+solutionCards.size());
 

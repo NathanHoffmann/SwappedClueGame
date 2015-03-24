@@ -44,17 +44,19 @@ public class ComputerPlayer extends Player {
 		
 		for( BoardCell i: targets){
 			if(i.isDoorway()){
-				//needed char need work on initial
-				if(i.getInitial1().charAt(0)!=lastRoom&&i.getInitial1().charAt(0)!=secondLastRoom){
-					this.setRow(i.getRow());
-					this.setCol(i.getColumn());
-					secondLastRoom=lastRoom;
-					lastRoom=i.getInitial1().charAt(0);
+				//needed char need work on initial				
+				
+				if( ((RoomCell)i).getInitial() != lastRoom && ((RoomCell)i).getInitial() != secondLastRoom){
+					setRow(i.getRow());
+					setCol(i.getColumn());
+					secondLastRoom = lastRoom;
+					lastRoom = ((RoomCell)i).getInitial();
 					break;
 				}
-				else{
+				else {
 					doorLocation.add(i);
 				}
+				
 			}
 			targets.removeAll(doorLocation);
 			Random rand=new Random();

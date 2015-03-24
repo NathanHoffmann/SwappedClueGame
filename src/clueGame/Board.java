@@ -33,20 +33,6 @@ public class Board extends JPanel {
 		for(BoardCell[] i: layout){
 			for(BoardCell j: i){
 				j.draw(g);
-				/*
-				if(j.isRoom()){
-					
-					j.draw(g);
-					System.out.println("here");
-				}
-				else {
-					
-					//System.out.println(j.getRow() + " "+j.getColumn() + " :" + j.getInitial1());
-					j.draw(g);
-					System.out.println("there");
-				}
-*/
-				
 			}
 		}
 	}
@@ -68,7 +54,7 @@ public class Board extends JPanel {
 	private HashSet<BoardCell> targets;
 	Graphics g;
 	
-	public void setGraphics(Graphics g){
+	public void setGraphics(Graphics g) {
 		this.g=g;
 	}
 	
@@ -150,10 +136,12 @@ public class Board extends JPanel {
 					String holdInit = layout[k][n].getInitial1();
 					Character holdChar = holdInit.charAt(0);
 					if(holdInit.length() == 2) {
-						//System.out.println("here");
+						if(holdInit.charAt(1)=='N') {
+							hold1.setNameLocation(true);
+							hold1.setRoomName(rooms.get(holdInit.charAt(0)));
+						}
 						hold1.setDoorDirection(holdInit.charAt(1));
 					}
-					
 					
 					if(!rooms.containsKey(holdChar)) {
 						throw new BadConfigFormatException();

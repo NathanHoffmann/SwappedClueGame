@@ -2,8 +2,6 @@ package clueGame;
 
 import java.awt.Color;
 
-import com.sun.prism.Graphics;
-
 public class WalkwayCell extends BoardCell {
 
 	public WalkwayCell(int row, int column) {
@@ -24,6 +22,7 @@ public class WalkwayCell extends BoardCell {
 
 	@Override
 	public void draw(java.awt.Graphics g) {
+		
 		g.setColor(Color.YELLOW);
 		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
 		g.setColor(Color.BLACK);

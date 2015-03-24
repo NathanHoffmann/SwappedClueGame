@@ -30,8 +30,8 @@ public class Board extends JPanel {
 		
 		g.setColor(Color.yellow);
 		g.fillRect(30, 200, 30, 30);		
-		for(BoardCell[] i: layout){
-			for(BoardCell j: i){
+		for(BoardCell[] i:layout){
+			for(BoardCell j:i){
 				j.draw(g);
 			}
 		}
@@ -180,11 +180,15 @@ public class Board extends JPanel {
 				
 			}
 		}
+	
 		
-		/*for(int i=0; i<layoutRoom.length;i++){
-			for(int l=0; j<layoutRoom[i].length;l++){
+	/*	for(int i=0; i<layoutRoom.length;i++){
+			
+			for(int l=0; l<layoutRoom[i].length;l++){
+				System.out.println(layoutRoom[i].length);
 				if(layoutRoom[i][l]==null){
 					layout[i][l]=layoutWalkway[i][l];
+					
 				}
 				else layout[i][l]=layoutRoom[i][l];
 				

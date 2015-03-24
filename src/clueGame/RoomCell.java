@@ -22,7 +22,9 @@ public class RoomCell extends BoardCell {
 	
 	@Override
 	public void draw(Graphics g){	
+
 		g.setColor(Color.LIGHT_GRAY);
+
 		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
 		g.setColor(Color.BLUE);
 		int thickness = cellSize/7;
@@ -111,8 +113,10 @@ public class RoomCell extends BoardCell {
 	
 	@Override
 	public boolean isDoorway(){
+
 		if (doorDirection != null && doorDirection != DoorDirection.NONE){
 			return true;
+
 		}
 		else 
 			return false;

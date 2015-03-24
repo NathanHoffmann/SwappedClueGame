@@ -8,12 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
-
 import javax.swing.*;
 
 import clueGame.Card.cardType;
@@ -35,10 +32,10 @@ public class ClueGame extends JFrame {
 	private String sugRoom;
 	private String sugPerson;
 	private String sugWeapon;
-	
+	private JButton button1;
+	private detectiveDialog dDialog;
 	
 	public ClueGame() throws FileNotFoundException, BadConfigFormatException {
-		
 		this.board = "ClueLayout.csv";
 		this.legend = "Legend.txt";
 		this.playerConfig = "playerConfigFile.txt";
@@ -48,27 +45,43 @@ public class ClueGame extends JFrame {
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
 		loadConfigFiles();
-		//gameBoard=new Board(rows, cols);
 		add(gameBoard, BorderLayout.CENTER);
 		
+		button1 = new JButton("Detective Notes");
+		button1.addActionListener(new ButtonListener());
+
+		add(button1, BorderLayout.SOUTH);
+
 	}
+	class ButtonListener implements ActionListener 
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			if (e.getSource() == button1) {
+				if(dDialog==null)
+					dDialog = new detectiveDialog(cards);		 
+				dDialog.setVisible(true);		  
+			}  
+		}
+	}
+
 	private JMenu createFileMenu()
 	{
-	  JMenu menu = new JMenu("File"); 
-	  menu.add(createFileExitItem());
-	  return menu;
+		JMenu menu = new JMenu("File"); 
+		menu.add(createFileExitItem());
+		return menu;
 	}
 	private JMenuItem createFileExitItem()
 	{
-	  JMenuItem item = new JMenuItem("Exit");
-	  class MenuItemListener implements ActionListener {
-	    public void actionPerformed(ActionEvent e)
-	    {
-	       System.exit(0);
-	    }
-	  }
-	  item.addActionListener(new MenuItemListener());
-	  return item;
+		JMenuItem item = new JMenuItem("Exit");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed(ActionEvent e)
+			{
+				System.exit(0);
+			}
+		}
+		item.addActionListener(new MenuItemListener());
+		return item;
 	}
 
 	
@@ -105,7 +118,6 @@ public class ClueGame extends JFrame {
 		return sugPerson;
 	}
 
-
 	public String getSugWeapon() {
 		return sugWeapon;
 	}
@@ -115,8 +127,6 @@ public class ClueGame extends JFrame {
 		return solution;
 	}
 	
-	
-
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException{
 		FileReader reader = new FileReader(board);
 		Scanner in = new Scanner(reader);
@@ -130,7 +140,7 @@ public class ClueGame extends JFrame {
 			line = in.nextLine();
 			String [] split1 = line.split(",");
 			int hold = split1.length;
-			if ( colu != hold){
+			if ( colu != hold) {
 				throw new BadConfigFormatException();
 			}
 		}

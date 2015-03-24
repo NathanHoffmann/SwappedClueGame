@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 public class Player {
 
 	private String name;
@@ -15,6 +14,7 @@ public class Player {
 	private String sugWeapon;
 	private String sugPerson;
 	private ArrayList<Card> unSeen;
+
 	ArrayList<Card> cards=new ArrayList<Card>();
 	
 	public String getSugRoom() {

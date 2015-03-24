@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
+
 import javax.swing.*;
 
+import sun.security.pkcs11.Secmod.DbMode;
 import clueGame.Card.cardType;
 
 public class ClueGame extends JFrame {
@@ -47,43 +49,39 @@ public class ClueGame extends JFrame {
 		loadConfigFiles();
 		add(gameBoard, BorderLayout.CENTER);
 		
-		button1 = new JButton("Detective Notes");
-		button1.addActionListener(new ButtonListener());
-
-		add(button1, BorderLayout.SOUTH);
-
-	}
-	class ButtonListener implements ActionListener 
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			if (e.getSource() == button1) {
-				if(dDialog==null)
-					dDialog = new detectiveDialog(cards);		 
-				dDialog.setVisible(true);		  
-			}  
-		}
 	}
 
 	private JMenu createFileMenu()
 	{
-		JMenu menu = new JMenu("File"); 
+		JMenu menu = new JMenu("File");
+		menu.add(createDetectiveItem());
 		menu.add(createFileExitItem());
 		return menu;
+	}
+	private JMenuItem createDetectiveItem(){
+		JMenuItem item = new JMenuItem("Notes");
+		item.addActionListener(new MenuItemListener());
+		return item;
 	}
 	private JMenuItem createFileExitItem()
 	{
 		JMenuItem item = new JMenuItem("Exit");
-		class MenuItemListener implements ActionListener {
-			public void actionPerformed(ActionEvent e)
-			{
-				System.exit(0);
-			}
-		}
 		item.addActionListener(new MenuItemListener());
 		return item;
 	}
-
+	
+	class MenuItemListener implements ActionListener {
+		public void actionPerformed(ActionEvent e)
+		{
+			if(e.getActionCommand() == "Exit")
+				System.exit(0);
+			else {
+				if(dDialog==null)
+					dDialog = new detectiveDialog(cards);
+				dDialog.setVisible(true);
+			}
+		}
+	}
 	
 	public String getDisproved() {
 		return disproved;

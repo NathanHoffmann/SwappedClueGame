@@ -17,13 +17,7 @@ public abstract class BoardCell {
 		initial1= initial;
 	}
 	public abstract void draw(Graphics g);
-	/*{
-		g.setColor(Color.YELLOW);
-		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
-		g.setColor(Color.BLACK);
-		g.drawRect(cellSize*x, cellSize*y, cellSize, cellSize);
-		
-	}*/
+
 	public boolean isWalkway(){
 		if (initial1.charAt(0) == 'W'){
 			return true;

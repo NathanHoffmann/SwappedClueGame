@@ -27,10 +27,7 @@ public class RoomCell extends BoardCell {
 	public void draw(Graphics g){	
 
 
-		if(this.isDoorway())
-			
-		g.setColor(Color.GREEN);
-		else 
+		
 		//System.out.println(doorDirection);
 		g.setColor(Color.LIGHT_GRAY);
 

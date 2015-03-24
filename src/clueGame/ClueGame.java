@@ -50,10 +50,10 @@ public class ClueGame extends JFrame {
 		loadConfigFiles();
 		add(gameBoard, BorderLayout.CENTER);
 		
-		button1 = new JButton("Login");
+		button1 = new JButton("Detective Notes");
 		button1.addActionListener(new ButtonListener());
 
-		add(button1, BorderLayout.CENTER);
+		add(button1, BorderLayout.SOUTH);
 
 	}
 	class ButtonListener implements ActionListener 
@@ -61,16 +61,13 @@ public class ClueGame extends JFrame {
 	public void actionPerformed(ActionEvent e)
 	{
 	  if (e.getSource() == button1) {
-		dDialog = new detectiveDialog();
-		dDialog.setVisible(true);
+		  if(dDialog==null)
+			  dDialog = new detectiveDialog(cards);		 
+		  dDialog.setVisible(true);
+			  
 	  }
-	  else {
-		if (dDialog != null)
-		{
-		  String name = dDialog.getName();
-		  JOptionPane.showMessageDialog(null, "Hello " + name);
-		}
-	  }
+	  
+	  
 	}
 	}
 

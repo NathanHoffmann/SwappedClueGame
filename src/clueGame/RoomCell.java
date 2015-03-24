@@ -21,8 +21,9 @@ public class RoomCell extends BoardCell {
 		}
 	@Override
 	public void draw(Graphics g){	
-		System.out.println("this is a test");
+
 		if(this.isDoorway())
+			
 		g.setColor(Color.GREEN);
 		else g.setColor(Color.gray);
 		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
@@ -91,11 +92,11 @@ public class RoomCell extends BoardCell {
 	}
 	
 	public boolean isDoorway(){
-		if (doorDirection != DoorDirection.NONE){
-			return true;
+		if (doorDirection != DoorDirection.NONE&&this.getInitial1().length()!=2){
+			return false;
 		}
 		else 
-			return false;
+			return true;
 	}
 
 	public Character getInitial() {

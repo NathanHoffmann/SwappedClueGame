@@ -35,8 +35,8 @@ public class ClueGame extends JFrame {
 	private String sugRoom;
 	private String sugPerson;
 	private String sugWeapon;
-	
-	
+	private JButton button1;
+	private detectiveDialog dDialog;
 	public ClueGame() throws FileNotFoundException, BadConfigFormatException {
 		
 		this.board = "ClueLayout.csv";
@@ -48,10 +48,32 @@ public class ClueGame extends JFrame {
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
 		loadConfigFiles();
-		//gameBoard=new Board(rows, cols);
 		add(gameBoard, BorderLayout.CENTER);
 		
+		button1 = new JButton("Login");
+		button1.addActionListener(new ButtonListener());
+
+		add(button1, BorderLayout.CENTER);
+
 	}
+	class ButtonListener implements ActionListener 
+	{
+	public void actionPerformed(ActionEvent e)
+	{
+	  if (e.getSource() == button1) {
+		dDialog = new detectiveDialog();
+		dDialog.setVisible(true);
+	  }
+	  else {
+		if (dDialog != null)
+		{
+		  String name = dDialog.getName();
+		  JOptionPane.showMessageDialog(null, "Hello " + name);
+		}
+	  }
+	}
+	}
+
 	private JMenu createFileMenu()
 	{
 	  JMenu menu = new JMenu("File"); 

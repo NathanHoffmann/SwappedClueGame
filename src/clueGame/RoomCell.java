@@ -1,8 +1,12 @@
 package clueGame;
-
+/*
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+*/
+import java.awt.*;
 import java.util.Arrays;
 
 
@@ -11,7 +15,7 @@ public class RoomCell extends BoardCell {
 	private int x;
 	private int y;
 	public RoomCell(int row, int column) {
-		super(column, row);
+		super(row, column);
 		//Board board=new Board();
 		x=column;
 		y=row;
@@ -22,11 +26,26 @@ public class RoomCell extends BoardCell {
 	@Override
 	public void draw(Graphics g){	
 
+
 		if(this.isDoorway())
 			
 		g.setColor(Color.GREEN);
-		else g.setColor(Color.gray);
+		else 
+		//System.out.println(doorDirection);
+		g.setColor(Color.LIGHT_GRAY);
+
 		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
+		g.setColor(Color.BLUE);
+		int thickness = cellSize/7;
+		switch(doorDirection){
+		case UP: g.fillRect(cellSize*x, cellSize*y, cellSize, thickness); break;
+		case DOWN: g.fillRect(cellSize*x, cellSize*y+cellSize, cellSize, -thickness); break;
+		case RIGHT: g.fillRect(cellSize*x+cellSize, cellSize*y, -thickness, cellSize); break;
+		case LEFT: g.fillRect(cellSize*x, cellSize*y, thickness, cellSize); break;
+			
+		default: 	break;
+		}
+		g.setColor(Color.LIGHT_GRAY);
 	}
 	@Override
 	public int hashCode() {
@@ -91,12 +110,18 @@ public class RoomCell extends BoardCell {
 			return true;
 	}
 	
+	@Override
 	public boolean isDoorway(){
-		if (doorDirection != DoorDirection.NONE&&this.getInitial1().length()!=2){
-			return false;
+
+		if (doorDirection != null && doorDirection != DoorDirection.NONE){
+			return true;
+
 		}
 		else 
-			return true;
+			return false;
+	}
+	public boolean isWalkway() {
+		return false;
 	}
 
 	public Character getInitial() {

@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -21,7 +22,7 @@ public class RoomCell extends BoardCell {
 	}
 	
 	@Override
-	public void draw(Graphics g){	
+	public void draw(Graphics g) {	
 
 		g.setColor(Color.LIGHT_GRAY);
 
@@ -42,7 +43,7 @@ public class RoomCell extends BoardCell {
 			g.drawString(roomName, cellSize*x, cellSize*y-thickness);
 		}
 		
-		g.setColor(Color.LIGHT_GRAY);		
+		g.setColor(Color.LIGHT_GRAY);	
 	}
 	@Override
 	public int hashCode() {

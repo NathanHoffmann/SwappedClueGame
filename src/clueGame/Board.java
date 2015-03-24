@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,12 +13,8 @@ import java.util.Scanner;
 import java.util.Set;
 
 
+
 import javax.swing.*;
-
-
-
-
-
 
 import clueGame.RoomCell.DoorDirection;
 
@@ -33,6 +30,7 @@ public class Board extends JPanel {
 		for(BoardCell[] i:layout){
 			for(BoardCell j:i){
 				j.draw(g);
+				j.drawPlayers(g, players);
 			}
 		}
 	}
@@ -52,6 +50,13 @@ public class Board extends JPanel {
 	private Map< BoardCell, LinkedList<BoardCell>> adjacencies;
 	private HashSet<BoardCell> visited;
 	private HashSet<BoardCell> targets;
+	private ArrayList<Player>players;
+	
+	
+	public void setPlayers(ArrayList<Player> players) {
+		this.players = players;
+	}
+
 	Graphics g;
 	
 	public void setGraphics(Graphics g) {

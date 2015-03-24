@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 
 
@@ -17,6 +18,18 @@ public abstract class BoardCell {
 		initial1= initial;
 	}
 	public abstract void draw(Graphics g);
+	
+	public void drawPlayers(Graphics g, ArrayList<Player> players) {
+		for(Player i:players) {
+			if(i.getRow()==x && i.getCol()==y) {
+				g.setColor(i.getColor());
+				g.fillOval(cellSize*x, cellSize*y, cellSize-1, cellSize-1);
+				g.setColor(Color.BLACK);
+				g.drawOval(cellSize*x, cellSize*y, cellSize-1, cellSize-1);
+			}
+		}
+	}
+	
 
 	public boolean isWalkway(){
 		if (initial1.charAt(0) == 'W'){

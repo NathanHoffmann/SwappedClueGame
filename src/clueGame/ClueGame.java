@@ -34,7 +34,6 @@ public class ClueGame extends JFrame {
 	private String sugRoom;
 	private String sugPerson;
 	private String sugWeapon;
-	private JButton button1;
 	private detectiveDialog dDialog;
 	
 	public ClueGame() throws FileNotFoundException, BadConfigFormatException {
@@ -48,6 +47,7 @@ public class ClueGame extends JFrame {
 		menuBar.add(createFileMenu());
 		loadConfigFiles();
 		add(gameBoard, BorderLayout.CENTER);
+		gameBoard.setPlayers(players);
 		
 	}
 
@@ -180,8 +180,8 @@ public class ClueGame extends JFrame {
 				else tempPlayer = new ComputerPlayer();
 				tempPlayer.setName(split[1]);
 				tempPlayer.setColor(convertColor(split[2]));
-				tempPlayer.setCol(Integer.parseInt(split[3]));
-				tempPlayer.setRow(Integer.parseInt(split[4]));
+				tempPlayer.setRow(Integer.parseInt(split[3]));
+				tempPlayer.setCol(Integer.parseInt(split[4]));
 				players.add(tempPlayer);
 				tempCard.setName(split[1]);
 				tempCard.setType(cardType.PERSON);

@@ -67,10 +67,10 @@ public class GameSetUpTest {
 		assertEquals("Ms. Scarlet",players.get(0).getName());
 		assertEquals("Col. Mustard",players.get(1).getName());
 		assertEquals("Prof. Plum",players.get(5).getName());
-		assertEquals(1,players.get(4).getCol());
-		assertEquals(1,players.get(5).getRow());
-		assertEquals(1,players.get(2).getCol());
-		assertEquals(1,players.get(2).getRow());	
+		assertEquals(15,players.get(4).getCol());
+		assertEquals(6,players.get(5).getRow());
+		assertEquals(0,players.get(2).getCol());
+		assertEquals(15,players.get(2).getRow());	
 	}
 
 	@Test

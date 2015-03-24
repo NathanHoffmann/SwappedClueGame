@@ -10,18 +10,21 @@ import java.util.Arrays;
 public class RoomCell extends BoardCell {
 	private int x;
 	private int y;
-	public RoomCell(int column, int row) {
+	public RoomCell(int row, int column) {
 		super(column, row);
 		//Board board=new Board();
 		x=column;
 		y=row;
+		
 		
 		//draw(g, board);
 		}
 	@Override
 	public void draw(Graphics g){	
 		System.out.println("this is a test");
-		g.setColor(Color.BLUE);
+		if(this.isDoorway())
+		g.setColor(Color.GREEN);
+		else g.setColor(Color.gray);
 		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
 	}
 	@Override
@@ -86,6 +89,7 @@ public class RoomCell extends BoardCell {
 	public boolean isRoom(){
 			return true;
 	}
+	
 	public boolean isDoorway(){
 		if (doorDirection != DoorDirection.NONE){
 			return true;

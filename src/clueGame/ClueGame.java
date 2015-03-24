@@ -48,7 +48,7 @@ public class ClueGame extends JFrame {
 		setJMenuBar(menuBar);
 		menuBar.add(createFileMenu());
 		loadConfigFiles();
-		gameBoard=new Board(rows, cols);
+		//gameBoard=new Board(rows, cols);
 		add(gameBoard, BorderLayout.CENTER);
 		
 	}
@@ -153,6 +153,8 @@ public class ClueGame extends JFrame {
 
 
 	public void loadPlayerConfig() throws Exception  {
+		players.clear();
+		cards.clear();
 		FileReader PReader = new FileReader(playerConfig);
 		Scanner readPlayer = new Scanner(PReader);
 		String line;

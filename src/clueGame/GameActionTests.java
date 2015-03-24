@@ -25,8 +25,7 @@ public class GameActionTests {
 		pistolCard = new Card("Pistol", Card.cardType.WEAPON);
 		knifeCard = new Card("Knife", Card.cardType.WEAPON);
 		libraryCard = new Card("Library", Card.cardType.ROOM);
-		studyCard = new Card("Study", Card.cardType.ROOM);
-		
+		studyCard = new Card("Study", Card.cardType.ROOM);		
 	}
 		
 	@Test
@@ -68,6 +67,7 @@ public class GameActionTests {
 		
 		cplayer.pickLocation(targets);
 	
+		System.out.println(targets);
 		assertEquals(4, cplayer.getRow());
 		assertEquals(2, cplayer.getCol());
 		//a test that considers the last visited room

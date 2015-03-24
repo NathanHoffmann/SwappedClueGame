@@ -26,7 +26,7 @@ public class ComputerPlayer extends Player {
 		int index;
 		
 		while(suggestPerson.equals("") || suggestWeapon.equals("") ) {
-			index=rand.nextInt(cards.size());
+			index=rand.nextInt(unSeenCards.size());
 			if(unSeenCards.get(index).getType() == cardType.WEAPON) {
 				suggestWeapon = unSeenCards.get(index).getName();
 			} else if(unSeenCards.get(index).getType() == cardType.PERSON) {

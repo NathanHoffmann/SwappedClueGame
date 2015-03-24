@@ -5,9 +5,9 @@ import java.awt.Graphics;
 
 
 
-public class BoardCell {
-	private int x;
-	private int y;
+public abstract class BoardCell {
+	protected int x;
+	protected int y;
 	private String initial1;
 	private BoardCell[][] layout;
 	protected final int cellSize=30;
@@ -16,13 +16,14 @@ public class BoardCell {
 	public void setInitial(String initial) {
 		initial1= initial;
 	}
-	public void draw(Graphics g){
+	public abstract void draw(Graphics g);
+	/*{
 		g.setColor(Color.YELLOW);
 		g.fillRect(cellSize*x, cellSize*y, cellSize, cellSize);
 		g.setColor(Color.BLACK);
 		g.drawRect(cellSize*x, cellSize*y, cellSize, cellSize);
 		
-	}
+	}*/
 	public boolean isWalkway(){
 		if (initial1.charAt(0) == 'W'){
 			return true;

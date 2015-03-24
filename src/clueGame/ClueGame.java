@@ -153,6 +153,8 @@ public class ClueGame extends JFrame {
 
 
 	public void loadPlayerConfig() throws Exception  {
+		players.clear();
+		cards.clear();
 		FileReader PReader = new FileReader(playerConfig);
 		Scanner readPlayer = new Scanner(PReader);
 		String line;

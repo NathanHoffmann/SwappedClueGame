@@ -31,6 +31,7 @@ public class Board extends JPanel {
 		g.fillRect(30, 200, 30, 30);		
 		for(BoardCell[] i: layout){
 			for(BoardCell j: i){
+
 				if(j.isDoorway()){
 					
 					j.draw(g);
@@ -41,12 +42,12 @@ public class Board extends JPanel {
 					//System.out.println(j.getRow() + " "+j.getColumn() + " :" + j.getInitial1());
 					j.draw(g);
 				}
+
 				
+				}
 			}
-			
 		}
 				
-	}
 	public Board() throws FileNotFoundException, BadConfigFormatException{
 		
 	}
@@ -68,15 +69,16 @@ public class Board extends JPanel {
 		this.g=g;
 	}
 	
-	public Board(int rows, int cols){
+	public Board(int rows, int cols) throws FileNotFoundException, BadConfigFormatException{
 		this.numRows = rows;
 		this.numColumns = cols;
 		layout = new clueGame.BoardCell[rows][cols];
-		for ( int i = 0; i<rows; i++){
+		/*for ( int i = 0; i<rows; i++){
 			for(int j =0; j<cols; j++){
 				layout[i][j] =new clueGame.BoardCell(i, j);
 			}
-		}
+		}*/
+		
 		setLayout(new GridLayout(numRows, numColumns));
 	}
 	public String getRoomName(int row , int col){
@@ -116,6 +118,10 @@ public class Board extends JPanel {
 			String hold = in1.nextLine();
 			String[] split2 = hold.split(",");
 			for(int i = 0; i< numColumns; i++) {
+				if(split2[i].charAt(0)=='W')
+				layout[j][i]=new WalkwayCell(j,i);
+				
+				else layout[j][i]=new RoomCell(j,i);
 				layout[j][i].setInitial(split2[i]);
 			}
 			j++;
@@ -128,10 +134,12 @@ public class Board extends JPanel {
 					int holdcol = layout[k][n].getColumn();
 					WalkwayCell hold1 = new WalkwayCell(holdrow, holdcol);
 					layoutWalkway[k][n] = new WalkwayCell(holdrow, holdcol);
+					
 				}
 				else if (hold.isRoom()) {
 					int holdrow = layout[k][n].getRow();
 					int holdcol = layout[k][n].getColumn();
+					
 					RoomCell hold1 = new RoomCell(holdrow, holdcol);
 					String holdInit = layout[k][n].getInitial1();
 					Character holdChar = holdInit.charAt(0);
@@ -158,7 +166,22 @@ public class Board extends JPanel {
 				
 			}
 		}
+		
+		/*for(int i=0; i<layoutRoom.length;i++){
+			for(int l=0; j<layoutRoom[i].length;l++){
+				if(layoutRoom[i][l]==null){
+					layout[i][l]=layoutWalkway[i][l];
+				}
+				else layout[i][l]=layoutRoom[i][l];
+				
+			}
+		}*/
 		calcAdjacencies();
+		/*for(int i=0; i<layoutRoom.length;i++){
+			for(int l=0; j<layoutRoom[i].length;l++){
+				System.out.println(layout[i][l]);
+			}
+			}*/
 	}
 	
 	@Override

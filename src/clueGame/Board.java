@@ -24,16 +24,23 @@ import clueGame.RoomCell.DoorDirection;
 //import ClueLayout.BoardCell;
 
 public class Board extends JPanel {
+	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.setColor(Color.yellow);
 		g.fillRect(30, 200, 30, 30);		
 		for(BoardCell[] i: layout){
 			for(BoardCell j: i){
-				if(j.isRoom()){
-					((RoomCell)j).draw(g);
+				if(j.isDoorway()){
+					
+					j.draw(g);
+					System.out.println("here");
 				}
-				else j.draw(g);
+				else {
+					
+					//System.out.println(j.getRow() + " "+j.getColumn() + " :" + j.getInitial1());
+					j.draw(g);
+				}
 				
 			}
 			
@@ -146,6 +153,7 @@ public class Board extends JPanel {
 					hold1.setRoomInitial(holdChar);
 					hold1.setDoorDirection(holdDoor);
 					layoutRoom[k][n] = hold1;
+					System.out.println("Test");
 				}
 				
 			}
